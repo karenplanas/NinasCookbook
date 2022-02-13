@@ -3,7 +3,7 @@ const recepiesController = require('./controllers/controllers')
 
 const router = new Router();
 
-router.get('/recepies', recepiesController.getAll);
-router.post('/recepies', recepiesController.addOne);
+router.get('/recipes', recepiesController.getAll);
+router.post('/recipes', recepiesController.addOne);
 
 module.exports = router;

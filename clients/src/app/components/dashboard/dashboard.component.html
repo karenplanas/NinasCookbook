@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let recipe of recepies" > 
+    <p>{{recipe.name}} recipe:</p>
+    <p>Ingredients:{{recipe.ingredients}}</p>
+    <p>Steps:{{recipe.steps}}</p>
+  </li>
+</ul>
+<!-- <a routerlink="/new-recipe">Add new recipe</a> -->
+<button type="button" (click)="btnClick()">Add new recipe</button>

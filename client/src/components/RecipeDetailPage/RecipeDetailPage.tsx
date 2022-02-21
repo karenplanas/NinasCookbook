@@ -1,34 +1,36 @@
 import React from "react";
 import { Recipe } from "../../interfaces/Recipe";
-import './RecipeDetailCard.css'
+import './RecipeDetailPage.css'
+import { useParams } from 'react-router-dom'
 
-interface Props {
-  recipe: Recipe
-}
+interface Props {}
 
-const RecipeDetailCard: React.FC<Props> = ({recipe}) => {
+const RecipeDetailPage: React.FC<Props> = () => {
+  const recipe = {} as any as Recipe
+  const { recipeId, userId } = useParams()
+  // get recipe
   return (
     <div className="recipe-card">
       <div className="text">
-        <h3>{recipe.name}</h3>
+        <h3>{recipe.name} {recipeId} {userId}</h3>
         <p className="titles">Ingredients:</p>
-        <ul className="ingredients"> {
+        {/* <ul className="ingredients"> {
           recipe.ingredients.map((i) => (
             <li key={i._id}>
               <p>{i.quantity} {i.name}</p>
             </li>
           ))
         }
-        </ul>
+        </ul> */}
         <p className="titles">Steps:</p>
-        <ul className="steps"> {
+        {/* <ul className="steps"> {
           recipe.steps.map((s) => (
             <li key={s._id}>
               <p><span className="step">{s.name}:</span> {s.content}</p>
             </li>
           ))
         }
-        </ul>
+        </ul> */}
         <p className="titles">Serving: {recipe.serving}</p>
       </div>
       <div className="imag">
@@ -39,4 +41,4 @@ const RecipeDetailCard: React.FC<Props> = ({recipe}) => {
   )
 }
 
-export {RecipeDetailCard}
+export { RecipeDetailPage }

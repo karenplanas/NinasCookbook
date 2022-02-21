@@ -1,5 +1,5 @@
 export interface Recipe {
-  id: string
+  _id: string
   name: string
   pictures: { type: String, url: String }[]
   ingredients: { _id: string, quantity: Number, name:String }[]

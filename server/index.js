@@ -10,6 +10,17 @@ const app = new Koa();
 
 app.use(cors());
 app.use(bodyparser());
+
+app.use(async (ctx, next) => {
+  try {
+    await next();
+  } catch (e) {
+    console.error('Error:', e)
+    ctx.status = 500;
+    ctx.body = e;
+  }
+})
+
 app.use(router.routes());
 
 app.listen(3000, async ()=> {

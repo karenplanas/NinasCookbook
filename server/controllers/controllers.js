@@ -1,31 +1,15 @@
-const { getRecepies, addRecepie } = require ('../models/recepies')
+const { getRecipes, addRecipe  } = require ('../models/recipes')
 
 const getAll = async (ctx) => {
-  console.log('get all');
-  try {
-    const recepies = await getRecepies();
-    console.log('recepies', recepies);
+    const recipes = await getRecipes();
     ctx.status = 200;
-    ctx.body = recepies;
-
-  } catch(e) {
-    console.error('Error:', e)
-    ctx.status = 500;
-    ctx.body = e;
-  }
+    ctx.body = recipes;
 }
 
 const addOne = async(ctx) => {
-  try {
-    const recepie = await addRecepie(ctx.request.body);
+    const recipe = await addRecipe(ctx.request.body);
     ctx.status = 201;
-    ctx.body = recepie;
-
-  } catch(e) {
-    console.error('Error:', e)
-    ctx.status = 500;
-    ctx.body = e;
-  }
+    ctx.body = recipe;
 }
 
 module.exports = { getAll, addOne };

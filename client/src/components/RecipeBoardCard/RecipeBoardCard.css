@@ -1,0 +1,11 @@
+.recipe-board-card {
+  background-color: aquamarine;
+  margin-bottom: 16px;
+  width: 800px;
+}
+
+.recipe-board-card img{
+  height: 350px;
+  width: 350px;
+  object-fit: cover;
+}

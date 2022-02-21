@@ -9,10 +9,8 @@ interface Props {
 const RecipeBoardCard: React.FC<Props> = ({recipe}) => {
   return (
     <div className="recipe-board-card">
-      <div className="text">
         <h3>{recipe.name}</h3>
         <img src={String(recipe.pictures[0].url)} alt='plate'/>
-      </div>
     </div>
   )
 }

@@ -1,0 +1,12 @@
+.recipes-list h2{
+  margin-bottom: 24px;
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  /* display: inline-grid;
+  grid-template-columns: auto auto auto; */
+}

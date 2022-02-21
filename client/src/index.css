@@ -6,17 +6,21 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  box-sizing: border-box;
+  background-color: rgb(238, 243, 248);
 }
 
 h1 {
-  font-size: 32pt;
+  font-size: 34pt;
 }
 
 h2 {
-  font-size: 24pt;
+  font-size: 26pt;
 }
 
 h3 {
-  font-size: 16pt;
+  font-size: 20pt;
+}
+
+* {
+  box-sizing: border-box;
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Recipe } from "../../interfaces/Recipe";
 import { RecipeBoardCard } from "../RecipeBoardCard/RecipeBoardCard";
+import './RecipesList.css'
 
 interface Props {
   listTitle: string;
@@ -10,7 +11,7 @@ interface Props {
 const RecipesList: React.FC<Props> = ({listTitle, recipesList}) => { 
   const recipes = recipesList;
   return (
-    <div>
+    <div className="recipes-list">
       <h2>{listTitle}</h2>
       <ul className="list"> {
         recipes.map((r) => (

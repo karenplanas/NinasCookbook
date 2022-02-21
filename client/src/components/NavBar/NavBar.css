@@ -1,8 +1,10 @@
 .nav-bar {
   width: 100%;
   height: 100px;
-  background-color: bisque;
+  background-color: rgb(252, 230, 204);
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 16px;
+  box-shadow: 2px 6px 4px rgba(0,0,0,0.1);
 }

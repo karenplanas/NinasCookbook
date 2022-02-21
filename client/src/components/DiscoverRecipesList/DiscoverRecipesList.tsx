@@ -14,9 +14,7 @@ const DiscoverRecipesList: React.FC = () => {
   }, [])
 
   return (
-    <div>
-      <RecipesList listTitle="Discover" recipesList={recipes}/>
-    </div>
+    <RecipesList listTitle="Discover" recipesList={recipes}/>
   )
 }
 

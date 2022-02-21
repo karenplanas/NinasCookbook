@@ -1,4 +1,4 @@
-const { getRecipes, addRecipe  } = require ('../models/recipes')
+const { getRecipes, addRecipe, getRecipe  } = require ('../models/recipes')
 
 const getAll = async (ctx) => {
     const recipes = await getRecipes();
@@ -12,4 +12,10 @@ const addOne = async(ctx) => {
     ctx.body = recipe;
 }
 
-module.exports = { getAll, addOne };
+const getOne = async(ctx) => {
+    ctx.body = await getRecipe(ctx.params.id);
+    ctx.status = 200;
+
+}
+
+module.exports = { getAll, addOne, getOne };

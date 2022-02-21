@@ -8,6 +8,9 @@ const fetchRecipes = async(): Promise<Recipe[]> => {
   return response.json();
 }
 
+const fetchRecipe = async (id: string | undefined) => {
+  const response = await fetch(`${recipesUrl}/${id}`);
+  return response.json();
+}
 
-
-export {fetchRecipes}
+export {fetchRecipes, fetchRecipe}

@@ -7,10 +7,15 @@ interface Props {
 }
 
 const RecipeBoardCard: React.FC<Props> = ({recipe}) => {
+  const picture = recipe.pictures.find(pic => pic.type === 'medium') || recipe.pictures[0]
   return (
     <div className="recipe-board-card">
-        <h3>{recipe.name}</h3>
-        <img src={String(recipe.pictures[0].url)} alt='plate'/>
+        <div className="image-container">
+          <img src={picture.url} alt='plate'/>
+          {/* <div className="hover">
+            <h3 >{recipe.name}</h3>
+          </div> */}
+        </div>
     </div>
   )
 }

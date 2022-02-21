@@ -18,4 +18,6 @@ const addRecipe = async (recipe) => {
     return r.save();
 }
 
-module.exports = { getRecipes, addRecipe };
+const getRecipe = (id) => Recipes.findOne({_id:id});
+
+module.exports = { getRecipes, addRecipe, getRecipe };

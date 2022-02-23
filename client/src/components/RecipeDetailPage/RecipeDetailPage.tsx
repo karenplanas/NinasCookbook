@@ -19,25 +19,27 @@ const RecipeDetailPage: React.FC<Props> = () => {
   return (
     <div className="recipe-details-card">
       <h2>{recipe.name}</h2>
-      <div className="ingredients-image-container">
 
+      <div className="ingredients-image-container">
         <div className="image-container">
           <img src={String(recipe.pictures[0].url)} alt='plate'/>
         </div>
-        
       </div>
+
       <div className="recipe-detail-page-text-container">
+
         <div className="ingredients-container">
-            <h3 className="titles">Ingredients:</h3>
-            <ul className="ingredients"> {
-              recipe.ingredients.map((i) => (
-                <li key={i._id}>
-                  <p>{i.quantity} {i.name}</p>
-                </li>
-              ))
-            }
-            </ul>
-          </div>
+          <h3 className="titles">Ingredients:</h3>
+          <ul className="ingredients"> {
+            recipe.ingredients.map((i) => (
+              <li key={i._id}>
+                <p>{i.quantity} {i.name}</p>
+              </li>
+            ))
+          }
+          </ul>
+        </div>
+
         <div className="preparation-container">
           <h3 className="titles">Preparation:</h3>
           <ul className="steps"> {
@@ -50,11 +52,13 @@ const RecipeDetailPage: React.FC<Props> = () => {
           }
           </ul>
         </div>
+
       </div>
 
       <div className="serving-container">
         <h3 className="titles">Serving:</h3>
       </div>
+      
     </div>
   )
 }

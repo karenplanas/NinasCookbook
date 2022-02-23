@@ -35,7 +35,7 @@ const NewRecipe: React.FC = () => {
         </div>
 
        <div className='buttons'>
-          <Button className="outlined"name="Cancel"/>
+          <Button className="outlined" name="Cancel"/>
           <Button className="contained" name="Save"/>
        </div>
 

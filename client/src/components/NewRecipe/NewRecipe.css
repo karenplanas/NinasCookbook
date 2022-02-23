@@ -37,6 +37,6 @@ h3 {
   flex-direction: column;
   flex: 8;
   padding-left: 16px;
-  border-left: 2px solid rgb(97, 95, 95);
+  border-left: 1px solid rgb(173, 170, 170);
   gap: 24px;
 }

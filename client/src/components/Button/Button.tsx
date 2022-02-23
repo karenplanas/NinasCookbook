@@ -3,7 +3,7 @@ import './Button.css'
 
 interface Props {
   name: string
-  className: string
+  className: 'outlined' | 'contained'
 }
 
 const Button : React.FC<Props> = ({name, className}) => {

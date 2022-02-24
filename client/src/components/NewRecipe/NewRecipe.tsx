@@ -21,16 +21,16 @@ const NewRecipe: React.FC = () => {
           <h4>Ingredients</h4>
           <div className='inputs'>
             <InputField className="input-field" type="text" label="Name" name="name" />
-            <InputField className="input-field" type="number"label="Quantity" name="name" />
-            <InputField className="input-field" type="number"label="Unit" name="name" />
+            <InputField className="input-field" type="number"label="Quantity" name="quantity" />
+            <InputField className="input-field" type="number"label="Unit" name="unit" />
           </div>
         </div>
        
         <div className='info'>
           <h4>Preparation</h4>
           <div className='inputs'>
-            <InputField className="input-field" type="text"label="Step Name / Number" name="name" />
-            <InputField className="input-field text-area" type="text" label="Description" name="name" />
+            <InputField className="input-field" type="text"label="Step Name / Number" name="step" />
+            <InputField className="input-field text-area" type="text" label="Description" name="description" />
           </div>
         </div>
 

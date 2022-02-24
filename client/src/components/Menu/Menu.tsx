@@ -30,7 +30,7 @@ const Menu: React.FC = () => {
   return (
     <div className='menu-container'>
       <MenuIcon onClick={onClick} color="black" className="menu-trigger"/>
-      <nav ref={menuRef} className={`menu ${isActive ? 'active' : 'inactive'}`}>
+      <nav onClick={onClick} ref={menuRef} className={`menu ${isActive ? 'active' : 'inactive'}`}>
         <ul>
           <li><Link to="/new-recipe">Add new Recipe</Link></li>
           <li><a href="/my-favorites">My Favorites</a></li>

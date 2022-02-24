@@ -5,6 +5,7 @@ import { NavBar } from './components/NavBar/NavBar';
 import { BrowserRouter, Route, Routes} from "react-router-dom"
 import { RecipeDetailPage } from './components/RecipeDetailPage/RecipeDetailPage';
 import { NewRecipe } from './components/NewRecipe/NewRecipe';
+import { SignInPage } from './components/SignInPage/SignInPage';
 
 const App: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const App: React.FC = () => {
             <Route path="/" element={<Dashboard />} />
             <Route path="/recipes/:recipeId" element={<RecipeDetailPage />} />
             <Route path="/new-recipe" element={<NewRecipe />} />
+            <Route path="/login" element={<SignInPage />} />
           </Routes>
         </div>
       </div>

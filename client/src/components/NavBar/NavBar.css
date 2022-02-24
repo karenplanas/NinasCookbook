@@ -9,3 +9,14 @@
   box-shadow: 2px 6px 4px rgba(0,0,0,0.1);
   padding: 32px 80px;
 }
+
+.nav-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 32px;
+}
+
+.nav-menu h4 {
+  margin: 0;
+}

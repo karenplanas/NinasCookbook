@@ -3,6 +3,7 @@ import { Button } from '../Button/Button'
 import { InputField } from '../InputField/InputField'
 import './SignInPage.css'
 import image from '../../assets/sign-in.jpg'
+import { Link } from 'react-router-dom'
 
 const SignInPage : React.FC = () => {
   return (
@@ -17,7 +18,7 @@ const SignInPage : React.FC = () => {
           <p>Forgot password ?</p>
         </div>
         <Button className="contained" name="Sign In"/>
-        <p className='no-account'>Don't have an account yet ? Sing Up</p>
+        <p className='no-account'>Don't have an account yet ? <Link to="/sign-up"><span>Sing Up</span></Link></p>
       </div>
       <div className='sign-in-img'>
         <img src={image} alt="plate"/>

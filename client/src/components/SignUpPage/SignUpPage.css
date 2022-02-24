@@ -1,4 +1,4 @@
-.sign-in {
+.sign-up {
   width: 1500px;
   padding-left: 48px;
   margin-bottom: 24px;
@@ -8,7 +8,7 @@
   display: flex;
 }
 
-.sign-in-text {
+.sign-up-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,30 +18,24 @@
   gap: 16px
 }
 
-.sign-in-text h3 {
+.sign-up-text h3 {
   align-self: center;
   margin-bottom: 24px 
 }
 
-.sign-in-text h4 {
+.sign-up-text h4 {
   align-self: center;
   margin-bottom: 40px 
 }
 
-.sign-in-img img{
+.sign-up-img img{
   height: 100%;
   width: 100%;
   object-fit: cover;
   border-radius: 0px 8px 8px 0px;
 }
 
-.remember-me {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.no-account {
+.yes-account {
   text-align: center;
 }
 

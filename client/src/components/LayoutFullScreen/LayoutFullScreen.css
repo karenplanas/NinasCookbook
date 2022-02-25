@@ -1,0 +1,43 @@
+.LayoutFullScreen-container {
+  display: flex;
+  background-color: white;
+  max-height: 100vh;
+  min-height: 100vh;
+  max-width: 100vw;
+  min-width: 100vw;
+  box-sizing: border-box;
+}
+
+.LayoutFullScreen-text {
+  display: flex;
+  flex-direction: column;
+  padding: 56px 80px;
+  flex-basis: 50%;
+}
+
+.LayoutFullScreen-text-form {
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 380px;
+  width: 100%;
+  flex: 1;
+  align-self: center;
+}
+
+.LayoutFullScreen-text h3 {
+  align-self: center;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.LayoutFullScreen-img {
+  flex-basis: 50%;
+}
+
+  .LayoutFullScreen-img img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}

@@ -1,3 +1,8 @@
+:root {
+  --primary-color: #296F4A;
+  --primary-color-dark: #133F28;
+}
+
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;

@@ -9,13 +9,13 @@ button {
 }
 
 .contained {
-  background-color: #296F4A;
+  background-color: var(--primary-color);
   color: white;
 }
 
 .outlined {
-  color: #296F4A;
+  color: var(--primary-color);
   border: solid;
-  border-color: #296F4A;
+  border-color: var(--primary-color);;
   background-color: white;
 }

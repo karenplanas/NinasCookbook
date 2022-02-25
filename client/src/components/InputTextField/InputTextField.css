@@ -1,0 +1,49 @@
+
+.InputTextField {
+  display: flex;
+  flex-direction: column;
+  color: #344054;
+  font-size: 10pt;
+}
+
+.input-field.checkbox{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #344054;
+  font-size: 10pt;
+  height: 28px;
+  gap: 8px
+}
+
+.input-field.checkbox label{
+  margin: 0;
+}
+
+.InputTextField label {
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.InputTextField input, .InputTextField textarea {
+  padding: 16px;
+  border-style: none;
+  border: solid 2px;
+  border-color: rgb(209, 206, 206);
+  border-radius: 8px;
+  font-size: 12pt;
+}
+
+input:focus-visible, textarea:focus-visible{
+  border: 2px solid var(--primary-color);
+}
+
+.InputTextField:focus-within label {
+  color: var(--primary-color-dark);
+  font-weight: 600;
+}
+
+/* For the big blocks of text like Description */
+.InputTextField textarea {
+  line-height: 24px;
+}

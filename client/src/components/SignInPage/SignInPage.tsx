@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '../Button/Button'
-import { InputField } from '../InputField/InputField'
+import { InputTextField } from '../InputTextField/InputTextField'
 import './SignInPage.css'
 import image from '../../assets/sign-in.jpg'
 import { Link } from 'react-router-dom'
@@ -10,10 +10,10 @@ const SignInPage : React.FC = () => {
   return (
     <LayoutFullScreen image={image}>
       <h3>Sign In</h3>
-      <InputField className="input-field" type="text" label="Userid / Email *" name="userid" />
-      <InputField className="input-field" type="text" label="Password *" name="password" />
+      <InputTextField type="text" label="Userid / Email *" name="userid" />
+      <InputTextField type="text" label="Password *" name="password" />
       <div className='remember-me'>
-        <InputField className="input-field checkbox" type="checkbox" label="Remember me" name="password" />
+        <InputTextField type="checkbox" label="Remember me" name="password" />
         <p>Forgot password ?</p>
       </div>
       <Button className="contained" name="Sign In"/>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '../Button/Button'
-import { InputField } from '../InputField/InputField'
+import { InputTextField } from '../InputTextField/InputTextField'
 import { LayoutNav } from '../LayoutNav/LayoutNav'
 import './NewRecipe.css'
 
@@ -14,25 +14,25 @@ const NewRecipe: React.FC = () => {
           <div className='info'>
             <h4>Informations</h4>
             <div className='inputs'>
-              <InputField className="input-field" type="text"label="Recipe Name" name="name" />
-              <InputField className="input-field text-area" type="text" label="Description / Notes" name="name" />
+              <InputTextField type="text"label="Recipe Name" name="name" />
+              <InputTextField rows={3} label="Description / Notes" name="name" />
             </div>
           </div>
 
           <div className='info'>
             <h4>Ingredients</h4>
             <div className='inputs'>
-              <InputField className="input-field" type="text" label="Name" name="name" />
-              <InputField className="input-field" type="number"label="Quantity" name="quantity" />
-              <InputField className="input-field" type="number"label="Unit" name="unit" />
+              <InputTextField type="text" label="Name" name="name" />
+              <InputTextField type="number" label="Quantity" name="quantity" />
+              <InputTextField type="number" label="Unit" name="unit" />
             </div>
           </div>
         
           <div className='info'>
             <h4>Preparation</h4>
             <div className='inputs'>
-              <InputField className="input-field" type="text"label="Step Name / Number" name="step" />
-              <InputField className="input-field text-area" type="text" label="Description" name="description" />
+              <InputTextField type="text"label="Step Name / Number" name="step" />
+              <InputTextField type="text" label="Description" name="description" />
             </div>
           </div>
 

@@ -5,6 +5,7 @@ import './SignInPage.css'
 import image from '../../assets/sign-in.jpg'
 import { Link } from 'react-router-dom'
 import { LayoutFullScreen } from '../LayoutFullScreen/LayoutFullScreen'
+import { InputCheckBox } from '../InputCheckBox/InputCheckBox'
 
 const SignInPage : React.FC = () => {
   return (
@@ -13,7 +14,7 @@ const SignInPage : React.FC = () => {
       <InputTextField type="text" label="Userid / Email *" name="userid" />
       <InputTextField type="text" label="Password *" name="password" />
       <div className='remember-me'>
-        <InputTextField type="checkbox" label="Remember me" name="password" />
+        <InputCheckBox name= "remember-me" label="Remember me"/>
         <p>Forgot password ?</p>
       </div>
       <Button className="contained" name="Sign In"/>

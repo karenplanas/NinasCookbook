@@ -1,0 +1,34 @@
+.InputCheckBox {
+  cursor: pointer;
+}
+
+.InputCheckBox-box {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  padding: 2px;
+  border-style: none;
+  border: solid 1px;
+  border-color: rgb(209, 206, 206);
+  border-radius: 4px;
+  margin-left: 8px;
+}
+
+.InputCheckBox input {
+  display: none;
+}
+
+input:checked ~ .InputCheckBox-box {
+  background-color: var(--primary-color);
+}
+
+input ~ .InputCheckBox-box img {
+  display: none;
+}
+
+input:checked ~ .InputCheckBox-box img {
+  display: block;
+  color: red;
+  width: 100%;
+  height: 100%;
+}

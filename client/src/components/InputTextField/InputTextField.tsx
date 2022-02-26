@@ -17,7 +17,6 @@ const InputTextField : React.FC<Props> = (props) => {
         props.rows ? 
         <textarea name={props.name} rows={props.rows} value={props.value}></textarea> :
           <input type={props.type || 'text'} name={props.name} value={props.value}></input>
- 
       }
     </div>
   )

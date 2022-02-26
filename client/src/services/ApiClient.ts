@@ -13,4 +13,9 @@ const fetchRecipe = async (id: string | undefined) => {
   return response.json();
 }
 
-export {fetchRecipes, fetchRecipe}
+const fetchRecipesByName = async(searchValue: string | null): Promise<Recipe[]> => {
+  const response = await fetch(`${recipesUrl}?searchValue=${searchValue}`);
+  return response.json();
+}
+
+export {fetchRecipes, fetchRecipe, fetchRecipesByName}

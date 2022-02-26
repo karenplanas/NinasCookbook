@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 
 
 interface Props {
-  listTitle: string;
+  listTitle?: string;
   recipesList: Recipe[];
 }
 

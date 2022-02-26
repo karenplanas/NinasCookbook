@@ -1,7 +1,8 @@
-const { getRecipes, addRecipe, getRecipe  } = require ('../models/recipes')
+const { getRecipes, addRecipe, getRecipe, getRecipesByName  } = require ('../models/recipes')
 
 const getAll = async (ctx) => {
-    const recipes = await getRecipes();
+    const { searchValue } = ctx.request.query;
+    const recipes = searchValue ? await getRecipesByName(searchValue) : await getRecipes() 
     ctx.status = 200;
     ctx.body = recipes;
 }

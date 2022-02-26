@@ -9,15 +9,31 @@ const recipeSchema = new Schema({
   serving: { type: String },
 })
 
+recipeSchema.index({ name: 'text', 'ingredients.name': 'text' })
+
 const Recipes = model('recipes', recipeSchema, 'recipes');
 
 const getRecipes = () => Recipes.find()
+
+const getRecipe = (id) => Recipes.findOne({_id:id});
+
+
+// https://docs.mongodb.com/manual/core/link-text-indexes/
+const getRecipesByName = (searchValue) => Recipes.find(
+  {
+    $text: {
+      $search: searchValue
+    },
+  },
+  { score: { $meta: "textScore" } }
+).sort( { score: { $meta: "textScore" } } )
+  
+  
 
 const addRecipe = async (recipe) => {
     const r = new Recipes(recipe);
     return r.save();
 }
 
-const getRecipe = (id) => Recipes.findOne({_id:id});
 
-module.exports = { getRecipes, addRecipe, getRecipe };
+module.exports = { getRecipes, addRecipe, getRecipe, getRecipesByName };

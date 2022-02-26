@@ -13,8 +13,10 @@
 .nav-menu {
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
-  gap: 32px;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 44px;
 }
 
 .nav-menu h4 {

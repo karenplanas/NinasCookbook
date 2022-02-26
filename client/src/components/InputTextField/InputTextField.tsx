@@ -2,21 +2,24 @@ import React from 'react'
 import './InputTextField.css'
 
 interface Props {
-  label: string
-  name: string
+  label?: string
+  name?: string
   value?: string
   type?: string
   rows?: number
+  placeholder?: string
+  className?: string
+  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
 }
 
 const InputTextField : React.FC<Props> = (props) => {
   return (
-    <div className='InputTextField'>
-      <label htmlFor={props.name}>{props.label}</label>
+    <div className={`${props.className} InputTextField`}>
+      {props.label && <label htmlFor={props.name}>{props.label}</label>}
       {
         props.rows ? 
-        <textarea name={props.name} rows={props.rows} value={props.value}></textarea> :
-          <input type={props.type || 'text'} name={props.name} value={props.value}></input>
+          <textarea {...props} rows={props.rows} ></textarea> :
+          <input {...props} type={props.type || 'text'}></input>
       }
     </div>
   )

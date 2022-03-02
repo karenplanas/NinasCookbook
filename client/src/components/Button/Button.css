@@ -2,10 +2,12 @@ button {
   height: 48px;
   border-radius: 4px;
   padding: 8px 16px;
-  font-size: 16px;
+  font-size: 14pt;
+  font-weight: bold;
   border-style: none;
   margin-top: 16px;
   margin-bottom: 16px;
+  cursor: pointer;
 }
 
 .contained {

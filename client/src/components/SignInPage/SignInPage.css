@@ -10,6 +10,7 @@
   text-align: center;
 }
 
-span {
-  text-decoration: underline;
+.no-account span {
+  text-decoration: none;
+  font-weight: 600;
 }

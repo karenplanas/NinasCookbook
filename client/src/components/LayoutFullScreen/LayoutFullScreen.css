@@ -26,9 +26,15 @@
   align-self: center;
 }
 
+.LayoutFullScreen-text-form form {
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
 .LayoutFullScreen-text h3 {
   align-self: center;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   font-weight: 500;
 }
 

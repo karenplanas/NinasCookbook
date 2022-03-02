@@ -15,9 +15,11 @@ const SearchBar: React.FC = () => {
     navigate(`/search?name=${searchValue}`);
   }
 
+  const onChange: any = (e: React.ChangeEvent<HTMLInputElement>) => setSearchValue(e.target.value)
+
   return (
     <form onSubmit={submitHandler} className='SearchBar'>
-      <InputTextField className="SearchBar-text-field" placeholder="Search recipe" onChange={(e) => setSearchValue(e.target.value)}/>
+      <InputTextField className="SearchBar-text-field" placeholder="Search recipe" onChange={onChange}/>
       <Link to={`/search?name=${searchValue}`}>
         <div className='lupe'>
           <img src={lupe} alt="magnifying glass"/>

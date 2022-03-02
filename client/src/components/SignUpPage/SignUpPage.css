@@ -1,44 +1,9 @@
-.sign-up {
-  width: 1500px;
-  padding-left: 48px;
-  margin-bottom: 24px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 2px 6px 10px rgba(0,0,0,0.1);
-  display: flex;
-}
-
-.sign-up-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 2;
-  padding: 40px;
-  padding-right: 80px;
-  gap: 16px
-}
-
-.sign-up-text h3 {
-  align-self: center;
-  margin-bottom: 24px 
-}
-
-.sign-up-text h4 {
-  align-self: center;
-  margin-bottom: 40px 
-}
-
-.sign-up-img img{
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 0px 8px 8px 0px;
-}
-
 .yes-account {
   text-align: center;
+  font-size: 14pt;
 }
 
-span {
+.yes-account span {
   text-decoration: underline;
+  font-weight: 600;
 }

@@ -4,11 +4,13 @@ import './Button.css'
 interface Props {
   name: string
   className: 'outlined' | 'contained'
+  type?:  'button' | 'submit' | 'reset'
 }
 
-const Button : React.FC<Props> = ({name, className}) => {
+const Button : React.FC<Props> = ({name, ...props}) => {
   return (
-    <button className={className}>{name}</button>
+    <button {...props}>{name}</button>
   )
 }
-export {Button}
+
+export { Button }

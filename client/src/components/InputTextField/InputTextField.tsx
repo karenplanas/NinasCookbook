@@ -1,28 +1,42 @@
 import React from 'react'
+import { UseFormRegisterReturn } from 'react-hook-form'
 import './InputTextField.css'
 
-interface Props {
+type Props = Partial<UseFormRegisterReturn> & {
   label?: string
-  name?: string
   value?: string
   type?: string
   rows?: number
   placeholder?: string
   className?: string
-  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
+  onChange?: React.ChangeEventHandler<HTMLInputElement>
 }
 
-const InputTextField : React.FC<Props> = (props) => {
+//https://react-hook-form.com/get-started/#Integratinganexistingform
+
+const InputTextField = React.forwardRef<HTMLInputElement, Props>(({ className, label, rows, type, name, ...props }, ref) => {
   return (
-    <div className={`${props.className} InputTextField`}>
-      {props.label && <label htmlFor={props.name}>{props.label}</label>}
+    <div className={`${className} InputTextField`}>
+      {label && <label htmlFor={name}>{label}</label>}
+      <input {...props} ref={ref as React.LegacyRef<HTMLInputElement>} type={type || 'text'} name={name} />
+    </div>
+  )
+})
+
+type InputTextAreaProps = Props & {
+  rows?: number
+  onChange?: React.ChangeEventHandler<HTMLTextAreaElement>
+}
+
+const InputTextArea = React.forwardRef<HTMLTextAreaElement, InputTextAreaProps>(({ className, label, rows, type, name, ...props }, ref) => {
+  return (
+    <div className={`${className} InputTextField`}>
+      {label && <label htmlFor={name}>{label}</label>}
       {
-        props.rows ? 
-          <textarea {...props} rows={props.rows} ></textarea> :
-          <input {...props} type={props.type || 'text'}></input>
+        <textarea {...props} ref={ref as unknown as React.LegacyRef<HTMLTextAreaElement>} rows={rows} name={name} />
       }
     </div>
   )
-}
+})
 
-export {InputTextField}
+export {InputTextField, InputTextArea}

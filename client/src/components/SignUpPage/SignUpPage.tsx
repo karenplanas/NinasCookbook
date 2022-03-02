@@ -11,7 +11,14 @@ import { User } from '../../interfaces/User'
 import { createUser } from '../../services/ApiClient'
 
 const SignUpPage: React.FC = () => {
-  const { register, handleSubmit } = useForm<User>();
+  const { register, handleSubmit, formState:{ errors} } = useForm<User>({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: ""
+    }
+  });
   
   const onSubmit = (data: User) => {
     createUser(data)
@@ -24,23 +31,33 @@ const SignUpPage: React.FC = () => {
         <InputTextField 
           type="text" 
           label="First name *" 
-          {...register("firstName", { required: true})}
+          {...register("firstName", { required: "This field is required"})}
         />
+        <p className='validation'>{errors.firstName?.message}</p>
         <InputTextField 
           type="text" 
           label="Last name *" 
-          {...register("lastName", {required: true})} 
+          {...register("lastName", {required: "This field is required"})} 
         />
+        <p className='validation'>{errors.lastName?.message}</p>
         <InputTextField 
           type="text" 
           label="Email *" 
-          {...register("email", {required: true})}
+          {...register("email", {required: "This field is required"})}
         />
+        <p className='validation'>{errors.email?.message}</p>
         <InputTextField 
           type="password" 
           label="Password *" 
-          {...register("password", {required: true})} 
+          {...register("password", {
+            required: "This field is required", 
+            minLength: {
+              value: 8, 
+              message: "Min length is 8"
+            }
+          })} 
         />
+        <p className='validation'>{errors.password?.message}</p>
         <Button className="contained" name="Sign Up" type="submit"/>
       </form>
       <p className='yes-account'>Already have an account? <Link to="/login"><span>Sign In</span></Link></p>

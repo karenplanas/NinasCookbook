@@ -27,7 +27,7 @@
 }
 
 .LayoutFullScreen-text-form form {
-  gap: 16px;
+  gap: 10px;
   display: flex;
   flex-direction: column;
 }

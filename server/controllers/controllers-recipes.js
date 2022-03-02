@@ -19,4 +19,5 @@ const getOne = async(ctx) => {
 
 }
 
+
 module.exports = { getAll, addOne, getOne };

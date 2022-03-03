@@ -11,7 +11,7 @@ const RecipeBoardCard: React.FC<Props> = ({recipe}) => {
   return (
     <div className="recipe-board-card">
         <div className="image-container">
-          <img src={picture.url} alt='plate'/>
+          <img src={picture?.url} alt='plate'/>
           {/* <div className="hover">
             <h3 >{recipe.name}</h3>
           </div> */}

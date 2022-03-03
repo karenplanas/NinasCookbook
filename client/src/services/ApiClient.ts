@@ -20,6 +20,16 @@ const fetchRecipesByName = async(searchValue: string | null): Promise<Recipe[]> 
   return response.json();
 }
 
+const createRecipe = async(recipe:Recipe) => {
+  const options = {
+    method: 'POST',
+    headers: {'Content-type': 'application/json'},
+    body: JSON.stringify(recipe)
+  }
+  const response = await fetch(`${baseUrl}/recipes`, options);
+  return response.json();
+}
+
 const createUser = async(user: User): Promise<User> => {
   const options = {
     method: 'POST',
@@ -40,4 +50,4 @@ const loginUser = async(credentials: Credentials): Promise<User> => {
   return response.json();
 }
 
-export {fetchRecipes, fetchRecipe, fetchRecipesByName, createUser, loginUser}
+export {fetchRecipes, fetchRecipe, fetchRecipesByName, createUser, loginUser, createRecipe}

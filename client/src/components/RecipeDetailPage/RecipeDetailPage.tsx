@@ -24,7 +24,7 @@ const RecipeDetailPage: React.FC<Props> = () => {
 
         <div className="ingredients-image-container">
           <div className="image-container">
-            <img src={String(recipe.pictures[0].url)} alt='plate'/>
+            <img src={String(recipe.pictures[0]?.url)} alt='plate'/>
           </div>
         </div>
 

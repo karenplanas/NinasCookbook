@@ -3,9 +3,10 @@ const { Schema, model } = mongoose;
 
 const recipeSchema = new Schema({
   name: { type: String, required: true },
+  description: { type: String },
   pictures:[{ type: { type: String, url: String }}],
-  ingredients: [{quantity: Number, name:String}],
-  steps: [{name:String, content: String}],
+  ingredients: [{quantity: Number, name:String }],
+  steps: [{name:String, content: String }],
   serving: { type: String },
 })
 
@@ -28,8 +29,6 @@ const getRecipesByName = (searchValue) => Recipes.find(
   { score: { $meta: "textScore" } }
 ).sort( { score: { $meta: "textScore" } } )
   
-  
-
 const addRecipe = async (recipe) => {
     const r = new Recipes(recipe);
     return r.save();

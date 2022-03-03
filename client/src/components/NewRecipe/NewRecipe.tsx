@@ -7,6 +7,7 @@ import { IngredientRow } from './IngredientRow/IngredientRow'
 import { InputTextArea, InputTextField } from '../InputTextField/InputTextField'
 import { LayoutNav } from '../LayoutNav/LayoutNav'
 import { Recipe } from '../../interfaces/Recipe';
+import * as ApiClient from '../../services/ApiClient'
 
 const NewRecipe: React.FC = () => {
   const methods = useForm<Recipe>({
@@ -37,7 +38,7 @@ const NewRecipe: React.FC = () => {
     name: 'steps'
   });
 
-  const onSubmit = handleSubmit((data) => console.log('data:', data))
+  const onSubmit = handleSubmit((data) => ApiClient.createRecipe(data));
 
   return (
     <LayoutNav>
@@ -56,6 +57,11 @@ const NewRecipe: React.FC = () => {
                   type="text"
                   label="Recipe Name" 
                   {...register('name')}  
+                />
+                  <InputTextField 
+                  type="text"
+                  label="Serving" 
+                  {...register('serving')}  
                 />
                 <InputTextArea 
                   rows={3} 

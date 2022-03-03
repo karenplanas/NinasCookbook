@@ -1,3 +1,4 @@
+import { Credentials } from "../interfaces/Credentials";
 import { Recipe } from "../interfaces/Recipe";
 import { User } from "../interfaces/User";
 
@@ -29,11 +30,11 @@ const createUser = async(user: User): Promise<User> => {
   return response.json();
 }
 
-const loginUser = async(user: User): Promise<User> => {
+const loginUser = async(credentials: Credentials): Promise<User> => {
   const options = {
     method: 'POST',
     headers: {'Content-type': 'application/json'},
-    body: JSON.stringify(user)
+    body: JSON.stringify(credentials)
   }
   const response = await fetch(`${baseUrl}/login`, options);
   return response.json();

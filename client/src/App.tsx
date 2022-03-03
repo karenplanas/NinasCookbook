@@ -7,19 +7,22 @@ import { NewRecipe } from './components/NewRecipe/NewRecipe';
 import { SignInPage } from './components/SignInPage/SignInPage';
 import { SignUpPage } from './components/SignUpPage/SignUpPage';
 import { SearchPage } from './components/SearchPage/SearchPage';
+import { UserContextProvider } from './contexts/UserContext';
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/recipes/:recipeId" element={<RecipeDetailPage />} />
-        <Route path="/new-recipe" element={<NewRecipe />} />
-        <Route path="/login" element={<SignInPage />} />
-        <Route path="/sign-up" element={<SignUpPage />} />
-        <Route path="/search" element={<SearchPage />} />
-      </Routes>
-    </BrowserRouter>
+    <UserContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/recipes/:recipeId" element={<RecipeDetailPage />} />
+          <Route path="/new-recipe" element={<NewRecipe />} />
+          <Route path="/login" element={<SignInPage />} />
+          <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="/search" element={<SearchPage />} />
+        </Routes>
+      </BrowserRouter>
+    </UserContextProvider>
   );
 }
 

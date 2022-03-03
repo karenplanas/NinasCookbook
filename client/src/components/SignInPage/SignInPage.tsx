@@ -1,22 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 
 import './SignInPage.css'
 import image from '../../assets/sign-in.jpg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { LayoutFullScreen } from '../LayoutFullScreen/LayoutFullScreen'
 import { InputCheckBox } from '../InputCheckBox/InputCheckBox'
 import { Button } from '../Button/Button'
 import { InputTextField } from '../InputTextField/InputTextField'
 import { User } from '../../interfaces/User';
-import { loginUser } from '../../services/ApiClient';
+import { useUserContext } from '../../contexts/UserContext';
 
 const SignInPage : React.FC = () => {
   const { register, handleSubmit } = useForm<User>();
+  const { user, login } = useUserContext();
+  const navigate = useNavigate();
 
   const onSubmit = (data: User) => {
-    loginUser(data);
+    login(data);
   }
+
+  useEffect(() => {
+    user && navigate('/')
+  }, [user, navigate])
 
   return (
     <LayoutFullScreen image={image}>

@@ -28,13 +28,13 @@ const UserContextProvider : React.FC = ({ children }) => {
   }, [user])
 
   const createUser = async (user: User) => {
-    await ApiClient.createUser(user);
-    setUser(user);
+    const response = await ApiClient.createUser(user);
+    setUser(response);
   }
 
   const login = async (credentials: Credentials) => {
-    await ApiClient.loginUser(credentials);
-    setUser(user);
+    const response = await ApiClient.loginUser(credentials);
+    setUser(response);
   }
   
   const logout = () => {
@@ -48,8 +48,6 @@ const UserContextProvider : React.FC = ({ children }) => {
     logout
   }
 
-  console.log('children', children)
-
   return (
     <UserContext.Provider value={value}>
       {children}
@@ -57,8 +55,8 @@ const UserContextProvider : React.FC = ({ children }) => {
   )
 }
 
-const useUserContext = () => {
-  return useContext(UserContext)
+const useUserContext = (): UserContextInterface => {
+  return useContext(UserContext) as UserContextInterface
 }
 
 export { UserContextProvider, useUserContext }

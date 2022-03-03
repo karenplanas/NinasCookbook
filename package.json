@@ -1,0 +1,14 @@
+{
+  "name": "Ninas-Cookbook",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "author": "Karen <lakarina86@gmail.com>",
+  "workspaces": ["client", "server"],
+  "license": "MIT",
+  "scripts": {
+    "start:client": "yarn workspace client start",
+    "start:server": "yarn workspace server start",
+    "start": "yarn start:server & yarn start:client"
+  }
+}

@@ -1,23 +1,43 @@
 import React from 'react'
-import { Button } from '../Button/Button'
-import { InputTextField } from '../InputTextField/InputTextField'
+import { useForm } from 'react-hook-form';
+
 import './SignInPage.css'
 import image from '../../assets/sign-in.jpg'
 import { Link } from 'react-router-dom'
 import { LayoutFullScreen } from '../LayoutFullScreen/LayoutFullScreen'
 import { InputCheckBox } from '../InputCheckBox/InputCheckBox'
+import { Button } from '../Button/Button'
+import { InputTextField } from '../InputTextField/InputTextField'
+import { User } from '../../interfaces/User';
+import { loginUser } from '../../services/ApiClient';
 
 const SignInPage : React.FC = () => {
+  const { register, handleSubmit } = useForm<User>();
+
+  const onSubmit = (data: User) => {
+    loginUser(data);
+  }
+
   return (
     <LayoutFullScreen image={image}>
       <h3>Sign In</h3>
-      <InputTextField type="text" label="Userid / Email *" name="userid" />
-      <InputTextField type="text" label="Password *" name="password" />
-      <div className='remember-me'>
-        <InputCheckBox name= "remember-me" label="Remember me"/>
-        <p>Forgot password ?</p>
-      </div>
-      <Button className="contained" name="Sign In"/>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <InputTextField 
+          type="text" 
+          label="Email *"
+          { ...register("email", {required: true})}
+        />
+        <InputTextField 
+          type="password" 
+          label="Password *" 
+          {...register("password", {required: true})}
+        />
+        <div className='remember-me'>
+          <InputCheckBox name= "remember-me" label="Remember me"/>
+          <p>Forgot password ?</p>
+        </div>
+        <Button className="contained" name="Sign In" type="submit"/>
+      </form>
       <p className='no-account'>Don't have an account yet? <Link to="/sign-up"><span>Sign Up</span></Link></p>
     </LayoutFullScreen>
   )

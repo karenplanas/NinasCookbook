@@ -35,6 +35,7 @@ const Menu: React.FC = () => {
           <li><Link to="/new-recipe">Add new Recipe</Link></li>
           <li><a href="/my-favorites">My Favorites</a></li>
           <li><a href="/contact">Contact</a></li>
+          <li><a href="/logout">Logout</a></li>
         </ul>
       </nav>
     </div>

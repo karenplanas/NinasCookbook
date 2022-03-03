@@ -29,4 +29,14 @@ const createUser = async(user: User): Promise<User> => {
   return response.json();
 }
 
-export {fetchRecipes, fetchRecipe, fetchRecipesByName, createUser}
+const loginUser = async(user: User): Promise<User> => {
+  const options = {
+    method: 'POST',
+    headers: {'Content-type': 'application/json'},
+    body: JSON.stringify(user)
+  }
+  const response = await fetch(`${baseUrl}/login`, options);
+  return response.json();
+}
+
+export {fetchRecipes, fetchRecipe, fetchRecipesByName, createUser, loginUser}

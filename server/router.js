@@ -9,6 +9,7 @@ router.get('/recipes/:id', recepiesController.getOne);
 router.post('/recipes', recepiesController.addOne);
 
 router.post('/register', usersController.create)
+router.post('/login', usersController.login)
 router.get('/register', usersController.getAll)
 
 module.exports = router;

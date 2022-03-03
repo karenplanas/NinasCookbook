@@ -1,4 +1,6 @@
-const { createUser, getUsers } = require('../models/users')
+const jwt = require('jsonwebtoken')
+const { createUser, getUsers, validateLogin } = require('../models/users')
+
 
 const create = async (ctx) => {
   try {
@@ -6,7 +8,7 @@ const create = async (ctx) => {
     ctx.status = 201;
     ctx.body = user;
   } catch(e) {
-    ctx.status = 400
+    ctx.status = e.statusCode || 500
     console.error(e)
   }
 }
@@ -16,4 +18,21 @@ const getAll = async (ctx) => {
   ctx.status = 200;
   ctx.body = users;
 }
-module.exports = { create, getAll }
+
+const login = async (ctx) => {
+  try {
+    const { email, password } = ctx.request.body
+    const userAllowed = await validateLogin(email, password)
+
+    if (userAllowed) {
+      ctx.status = 200;
+      ctx.body = userAllowed;
+    } else {
+      ctx.status = 400;
+      ctx.body = "Login failed";
+    }
+  } catch (error) {
+    console.error(error);
+  }
+} 
+module.exports = { create, getAll, login }

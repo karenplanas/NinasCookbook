@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
-// const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const SECRET_KEY = process.env.SECRET_KEY 
+const { comparePassword, encrypt } = require ('./encrypt-utils');
 
 const userSchema = new Schema({
   firstName: {
@@ -23,19 +25,49 @@ const userSchema = new Schema({
 
 const User = model('user', userSchema);
 
+const generateJwt = (user) => {
+  const accessToken = jwt.sign({ ...user }, SECRET_KEY);
+  return {...user, accessToken}
+}
+
+// class ApiError extends Error {
+//   constructor(statusCode) {
+//     this.statusCode = statusCode;
+//   }
+// }
+// class InvalidUserPayloadError extends ApiError {
+//   constructor() {
+//     this.statusCode = 400;
+//   }
+
+// }
+// class UserAlreadyExistsError extends ApiError {
+//   constructor() {
+//     this.statusCode = 400;
+//   }
+// }
+
+// class SomethingElse extends ApiError {
+//   constructor() {
+//     this.statusCode = 401;
+//   }
+// }
+
 const createUser = async(user) => {
   try {
-    // const newUser = { 
-    //   firstname, 
-    //   lastName, 
-    //   email, 
-    //   password: bcrypt.hashSync(user.password, bcrypt.genSaltSync(10))
-    // }
-    return await User.create(user);
+    const newUser = await User.create({...user, password: encrypt(user.password)});
+    return generateJwt(newUser);
   } catch(error) {
-    console.error(error)
+    // if(...) {
+    //   throw UserAlreadyExistsError()
+    // } else if(...) {
+    //   throw InvalidUserPayloadError()
+    // } else {
+    //   throw error
+    // }
+    console.error(error);
+    throw error
   }
-
 }
 
 const getUsers = async() => {
@@ -43,7 +75,15 @@ const getUsers = async() => {
     return await User.find();
   } catch (error) {
     console.error(error);
+    throw error
   }
 }
 
-module.exports = { createUser, getUsers }
+const validateLogin = async (email, password) => {
+  const user = await User.findOne({ email: email}).then(d => d._doc);
+  if (user && comparePassword(password, user.password)){
+    return generateJwt(user);
+  }
+}
+
+module.exports = { createUser, getUsers, validateLogin }

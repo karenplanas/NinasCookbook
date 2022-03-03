@@ -15,6 +15,11 @@ button {
   color: white;
 }
 
+.contained:hover {
+  background-color: var(--primary-color-5);
+  color: white;
+}
+
 .outlined {
   color: var(--primary-color);
   border: solid;

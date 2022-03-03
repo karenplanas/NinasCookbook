@@ -39,6 +39,7 @@ const UserContextProvider : React.FC = ({ children }) => {
   
   const logout = () => {
     setUser(undefined);
+    window.localStorage.removeItem(STORAGE_KEY);
   }
 
   const value = {

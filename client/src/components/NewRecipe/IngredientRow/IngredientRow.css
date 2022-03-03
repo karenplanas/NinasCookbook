@@ -1,0 +1,22 @@
+.IngredientRow {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.unit-dropdown-list {
+  width: 110px;
+}
+
+.quantity {
+  width: 110px;
+}
+
+.name {
+  flex: 1
+}
+
+.delete {
+  cursor: pointer;
+  background-color: aquamarine;
+}

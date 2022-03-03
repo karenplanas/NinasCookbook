@@ -1,0 +1,27 @@
+.DropDownList-wrapper {
+  padding-right: 16px;
+  border: solid 2px rgb(209, 206, 206);
+  border-radius: 8px;
+  color: #344054;
+  overflow: hidden;
+}
+
+.DropDownList {
+  padding: 16px;
+  border-style: none;
+  font-size: 12pt;
+}
+
+.DropDownList-withLabel {
+  display: flex;
+  flex-direction: column;
+}
+
+.DropDownList-withLabel label{
+  color: #344054;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 12pt;
+}
+
+

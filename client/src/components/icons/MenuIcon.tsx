@@ -1,6 +1,12 @@
 import React from 'react'
 
-const MenuIcon: React.FC<{ color?: string, onClick?: React.MouseEventHandler, className:string }> = ({ color = 'black', onClick, className }) => {
+interface Props {
+  color?: string, 
+  onClick?: React.MouseEventHandler, 
+  className:string
+}
+
+const MenuIcon: React.FC<Props> = ({ color, onClick, className }) => {
   return (
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={onClick}>
       <path fillRule="evenodd" clipRule="evenodd" d="M20.5 6.5C20.5 7.05228 20.0523 7.5 19.5 7.5H4.5C3.94772 7.5 3.5 7.05228 3.5 6.5V5.5C3.5 4.94772 3.94772 4.5 4.5 4.5H19.5C20.0523 4.5 20.5 4.94772 20.5 5.5V6.5Z" fill={color} strokeLinecap="round" strokeLinejoin="round"/>

@@ -55,7 +55,7 @@ const generateJwt = (user) => {
 
 const createUser = async(user) => {
   try {
-    const newUser = await User.create({...user, password: encrypt(user.password)});
+    const newUser = await User.create({...user, password: encrypt(user.password)}).then(d => d._doc);
     return generateJwt(newUser);
   } catch(error) {
     // if(...) {

@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form' // https://react-hook-form.com/get-started/#Integratinganexistingform
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import './SignUpPage.css'
 import image from '../../assets/sign-up.jpg'
@@ -8,7 +8,7 @@ import { Button } from '../Button/Button'
 import { InputTextField } from '../InputTextField/InputTextField'
 import { LayoutFullScreen } from '../LayoutFullScreen/LayoutFullScreen'
 import { User } from '../../interfaces/User'
-import { createUser } from '../../services/ApiClient'
+import { useUserContext } from '../../contexts/UserContext'
 
 const SignUpPage: React.FC = () => {
   const { register, handleSubmit, formState:{ errors} } = useForm<User>({
@@ -19,10 +19,17 @@ const SignUpPage: React.FC = () => {
       password: ""
     }
   });
+
+  const { user, createUser } = useUserContext();
+  const navigate = useNavigate();
   
   const onSubmit = (data: User) => {
     createUser(data)
   }
+
+  useEffect(()=> {
+    user && navigate('/')
+  }, [user, navigate])
 
   return (
     <LayoutFullScreen image={image}>

@@ -1,13 +1,12 @@
-// const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 const comparePassword = (userPassword, databasePassword) => {
-  // const validatedPass = await bcrypt.compare(password, user.password);
-  return userPassword === databasePassword;
+  return bcrypt.compare(userPassword, databasePassword);
 }
 
 const encrypt = (password) => {
-  //password: bcrypt.hashSync(user.password, bcrypt.genSaltSync(10))
-  return password;
+  const hashedPw = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+  return hashedPw;
 
 }
 

@@ -8,6 +8,7 @@ import { InputTextArea, InputTextField } from '../InputTextField/InputTextField'
 import { LayoutNav } from '../LayoutNav/LayoutNav'
 import { Recipe } from '../../interfaces/Recipe';
 import { useRecipeApiClient } from '../../services/ApiClient'
+import { useNavigate } from 'react-router-dom';
 
 const NewRecipe: React.FC = () => {
   const methods = useForm<Recipe>({
@@ -38,8 +39,12 @@ const NewRecipe: React.FC = () => {
     name: 'steps'
   });
 
+  const navigate = useNavigate();
   const { createRecipe } = useRecipeApiClient();
-  const onSubmit = handleSubmit((data) => createRecipe(data));
+  const onSubmit = handleSubmit((data) => {
+    createRecipe(data);
+    navigate('/user/recipes')
+  });
 
   return (
     <LayoutNav>

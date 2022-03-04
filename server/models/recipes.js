@@ -40,5 +40,9 @@ const getUserRecipes = (userId) => {
   return userRecipes;
 }
 
+const deleteRecipe = async (recipeId) => {
+  const res = await Recipes.deleteOne({_id: recipeId})
+  return res;
+}
 
-module.exports = { getRecipes, addRecipe, getRecipe, getRecipesByName, getUserRecipes };
+module.exports = { getRecipes, addRecipe, getRecipe, getRecipesByName, getUserRecipes, deleteRecipe };

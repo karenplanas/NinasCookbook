@@ -32,5 +32,9 @@ const getCurrentUserRecipes = async (ctx) => {
     ctx.body = recipes;
 }
 
+const deleteOne = async (ctx) => {
+    ctx.body = await RecipeModel.deleteRecipe(ctx.params.id);
+    ctx.state = 204;
+}
 
-module.exports = { getAll, addOne, getOne, getUserRecipes, getCurrentUserRecipes };
+module.exports = { getAll, addOne, getOne, getUserRecipes, getCurrentUserRecipes, deleteOne };

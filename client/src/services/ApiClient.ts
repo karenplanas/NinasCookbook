@@ -52,8 +52,13 @@ const useRecipeApiClient = () => {
     return performRequest({method:'POST', path: `${recipesPath}`, body: recipe, token: user?.accessToken  })
   }
 
+  const deleteRecipe = (recipeId: string) => {
+    return performRequest({method:'DELETE', path:`${userRecipesPath}/${recipeId}`, token: user?.accessToken })
+  }
+
   return {
-    createRecipe
+    createRecipe,
+    deleteRecipe
   }
 }
 

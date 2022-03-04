@@ -2,12 +2,16 @@ import React from 'react'
 
 import './UserRecipeCard.css'
 import { Recipe } from '../../interfaces/Recipe'
+import { Link } from 'react-router-dom'
+import { useRecipeApiClient } from '../../services/ApiClient'
 
 interface Props {
-  recipe: Recipe
+  recipe: Recipe, 
+  handleDelete: (id: string) => void
 }
 
-const UserRecipeCard: React.FC<Props> = ({recipe}) => {
+const UserRecipeCard: React.FC<Props> = ({recipe, handleDelete}) => {
+
   return (
     <div className='UserRecipeCard'>
       <div className='UserRecipeCard-image-container'>Image</div>
@@ -16,9 +20,9 @@ const UserRecipeCard: React.FC<Props> = ({recipe}) => {
         <p><span>Description: </span>{recipe.description}</p>
         <p><span>Servings: </span>{recipe.serving}</p>
         <div className='userRecipeCard-options'>
-          <div><p>More...</p></div>
+          <Link to={`/recipes/${recipe._id}`}><div><p>More...</p></div></Link>
           <div><p>Edit</p></div>
-          <div><p>Remove</p></div>
+          <div onClick={() => handleDelete(recipe._id)}><p>Remove</p></div>
         </div>
       </div>
     </div>

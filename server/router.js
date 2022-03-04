@@ -17,6 +17,7 @@ router.get('/me', authMiddleware, usersController.getOne);
 
 //Profile routes
 router.get('/user/recipes', authMiddleware, recipesController.getCurrentUserRecipes);
+router.delete('/user/recipes/:id', authMiddleware, recipesController.deleteOne)
 
 router.get('/users/:userId/recipes', authMiddleware, recipesController.getUserRecipes);
 

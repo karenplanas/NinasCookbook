@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
-const jwt = require('jsonwebtoken');
-const SECRET_KEY = process.env.SECRET_KEY 
-const { comparePassword, encrypt } = require ('./encrypt-utils');
+const { comparePassword, encrypt } = require ('../utils/encrypt-utils');
+const { generateJwt } = require('../utils/jwt-utils')
 
 const userSchema = new Schema({
   firstName: {
@@ -24,11 +23,6 @@ const userSchema = new Schema({
 })
 
 const User = model('user', userSchema);
-
-const generateJwt = (user) => {
-  const accessToken = jwt.sign({ ...user }, SECRET_KEY);
-  return {...user, accessToken}
-}
 
 // class ApiError extends Error {
 //   constructor(statusCode) {
@@ -79,6 +73,15 @@ const getUsers = async() => {
   }
 }
 
+const getUser = async(id) => {
+  try {
+    return await User.findOne({_id:id});
+  } catch (error) {
+    console.error(error);
+    throw error
+  }
+}
+
 const validateLogin = async (email, password) => {
   const user = await User.findOne({ email: email}).then(d => d._doc);
   if (user && comparePassword(password, user.password)){
@@ -86,4 +89,4 @@ const validateLogin = async (email, password) => {
   }
 }
 
-module.exports = { createUser, getUsers, validateLogin }
+module.exports = { createUser, getUsers, validateLogin, User, getUser }

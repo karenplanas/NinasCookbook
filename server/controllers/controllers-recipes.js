@@ -8,7 +8,7 @@ const getAll = async (ctx) => {
 }
 
 const addOne = async(ctx) => {
-    const recipe = await addRecipe(ctx.request.body);
+    const recipe = await addRecipe({ ...ctx.request.body, userId: ctx.request.user._id });
     ctx.status = 201;
     ctx.body = recipe;
 }

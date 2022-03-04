@@ -1,6 +1,4 @@
-const jwt = require('jsonwebtoken')
-const { createUser, getUsers, validateLogin } = require('../models/users')
-
+const { createUser, validateLogin, getUser } = require('../models/users')
 
 const create = async (ctx) => {
   try {
@@ -13,17 +11,10 @@ const create = async (ctx) => {
   }
 }
 
-const getAll = async (ctx) => {
-  const users = await getUsers();
-  ctx.status = 200;
-  ctx.body = users;
-}
-
 const login = async (ctx) => {
   try {
     const { email, password } = ctx.request.body
     const userAllowed = await validateLogin(email, password)
-
     if (userAllowed) {
       ctx.status = 200;
       ctx.body = userAllowed;
@@ -35,4 +26,17 @@ const login = async (ctx) => {
     console.error(error);
   }
 } 
-module.exports = { create, getAll, login }
+
+//Profile
+const getOne = async (ctx) => {
+  const { user } = getUser(ctx.request.user._id);
+  if (user) {
+    ctx.status = 200;
+    ctx.body = user
+  } else {
+    ctx.status = 400;
+    ctx.body = { message: 'Resource not found' };
+  }
+}
+
+module.exports = { create, login, getOne }

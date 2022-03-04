@@ -3,6 +3,7 @@ const { Schema, model } = mongoose;
 
 const recipeSchema = new Schema({
   name: { type: String, required: true },
+  userId: { type: String, required: true },
   description: { type: String },
   pictures:[{ type: { type: String, url: String }}],
   ingredients: [{quantity: Number, name:String }],

@@ -1,53 +1,69 @@
+import { useUserContext } from "../contexts/UserContext";
 import { Credentials } from "../interfaces/Credentials";
 import { Recipe } from "../interfaces/Recipe";
 import { User } from "../interfaces/User";
 
 const baseUrl = 'http://localhost:3000';
-const recipesUrl = `${baseUrl}/recipes`;
+const recipesPath = '/recipes';
+const loginPath = '/login';
+const registerPath = '/register';
 
-const fetchRecipes = async(): Promise<Recipe[]> => {
-  const response = await fetch(recipesUrl);
-  return response.json();
+interface PerformRequestParameters {
+  method?: string
+  path:string
+  body?: unknown
+  token?:string
 }
 
-const fetchRecipe = async (id: string | undefined) => {
-  const response = await fetch(`${recipesUrl}/${id}`);
-  return response.json();
-}
-
-const fetchRecipesByName = async(searchValue: string | null): Promise<Recipe[]> => {
-  const response = await fetch(`${recipesUrl}?searchValue=${searchValue}`);
-  return response.json();
-}
-
-const createRecipe = async(recipe:Recipe) => {
+const performRequest = async <T>({method, path, body, token}: PerformRequestParameters): Promise<T> => {
   const options = {
-    method: 'POST',
-    headers: {'Content-type': 'application/json'},
-    body: JSON.stringify(recipe)
+    method: method,
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: token ? `Bearer ${token}` : ''
+    },
+    body: body ? JSON.stringify(body) : undefined
   }
-  const response = await fetch(`${baseUrl}/recipes`, options);
-  return response.json();
+  const response = await fetch(`${baseUrl}${path}`, options);
+  return response.json() as unknown as T;
 }
 
-const createUser = async(user: User): Promise<User> => {
-  const options = {
-    method: 'POST',
-    headers: {'Content-type': 'application/json'},
-    body: JSON.stringify(user)
-  }
-  const response = await fetch(`${baseUrl}/register`, options);
-  return response.json();
+
+// ***** Recipes requests *****
+
+const fetchRecipe = (id: string | undefined): Promise<Recipe> => {
+  return performRequest<Recipe>({ method: 'GET', path: `${recipesPath}/${id}`});
 }
 
-const loginUser = async(credentials: Credentials): Promise<User> => {
-  const options = {
-    method: 'POST',
-    headers: {'Content-type': 'application/json'},
-    body: JSON.stringify(credentials)
-  }
-  const response = await fetch(`${baseUrl}/login`, options);
-  return response.json();
+const fetchRecipes = (): Promise<Recipe[]> => {
+  return performRequest({ method: 'GET', path: `${recipesPath}`});
 }
 
-export {fetchRecipes, fetchRecipe, fetchRecipesByName, createUser, loginUser, createRecipe}
+
+const fetchRecipesByName = (searchValue: string | null): Promise<Recipe[]> => {
+  return performRequest({ method: 'GET', path:`${recipesPath}?searchValue=${searchValue}`});
+}
+
+const useRecipeApiClient = () => {
+  const { user } = useUserContext();
+
+  const createRecipe = (recipe: Recipe) => {
+    return performRequest({method:'POST', path: `${recipesPath}`, body: recipe, token: user?.accessToken  })
+  }
+
+  return {
+    createRecipe
+  }
+}
+
+// ***** User requests *****
+
+const createUser = (user: User): Promise<User> => {
+  return performRequest({method: 'POST', path:registerPath, body: user})
+}
+
+const loginUser = (credentials: Credentials): Promise<User> => {
+  return performRequest({method: 'POST', path: loginPath, body: credentials})
+}
+
+export {fetchRecipes, fetchRecipe, fetchRecipesByName, createUser, loginUser, useRecipeApiClient}

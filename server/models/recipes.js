@@ -35,5 +35,10 @@ const addRecipe = async (recipe) => {
     return r.save();
 }
 
+const getUserRecipes = (userId) => {
+  const userRecipes = Recipes.find({userId});
+  return userRecipes;
+}
 
-module.exports = { getRecipes, addRecipe, getRecipe, getRecipesByName };
+
+module.exports = { getRecipes, addRecipe, getRecipe, getRecipesByName, getUserRecipes };

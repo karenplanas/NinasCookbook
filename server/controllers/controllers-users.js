@@ -27,7 +27,7 @@ const login = async (ctx) => {
   }
 } 
 
-//Profile
+//User Profile
 const getOne = async (ctx) => {
   const { user } = getUser(ctx.request.user._id);
   if (user) {

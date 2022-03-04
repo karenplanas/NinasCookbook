@@ -7,6 +7,7 @@ const baseUrl = 'http://localhost:3000';
 const recipesPath = '/recipes';
 const loginPath = '/login';
 const registerPath = '/register';
+const userRecipesPath = '/user/recipes'
 
 interface PerformRequestParameters {
   method?: string
@@ -66,4 +67,8 @@ const loginUser = (credentials: Credentials): Promise<User> => {
   return performRequest({method: 'POST', path: loginPath, body: credentials})
 }
 
-export {fetchRecipes, fetchRecipe, fetchRecipesByName, createUser, loginUser, useRecipeApiClient}
+const fetchUserRecipes = (user: User | undefined): Promise<Recipe[]> => {
+  return performRequest({method:'GET', path: userRecipesPath, token: user?.accessToken})
+}
+
+export {fetchRecipes, fetchRecipe, fetchRecipesByName, createUser, loginUser, useRecipeApiClient, fetchUserRecipes}

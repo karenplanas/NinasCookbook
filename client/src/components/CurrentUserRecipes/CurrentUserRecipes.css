@@ -1,0 +1,9 @@
+.CurrentUserRecipes {
+  display: flex;
+  flex-direction: column;
+  gap: 16px
+}
+
+.CurrentUserRecipes h3 {
+  margin-bottom: 16px;
+}

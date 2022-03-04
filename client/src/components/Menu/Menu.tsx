@@ -35,7 +35,7 @@ const Menu: React.FC = () => {
       <nav onClick={onClick} ref={menuRef} className={`menu ${isActive ? 'active' : 'inactive'}`}>
         <ul>
           <Link to="/new-recipe"><li>Add new Recipe</li></Link>
-          <Link to="/my-favorites"><li>My Favorites</li></Link>
+          <Link to="/user/recipes"><li>My Recipes</li></Link>
           <li className="clickable" onClick={() => logout()}>Logout</li>
         </ul>
       </nav>

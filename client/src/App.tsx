@@ -8,6 +8,7 @@ import { SignInPage } from './components/SignInPage/SignInPage';
 import { SignUpPage } from './components/SignUpPage/SignUpPage';
 import { SearchPage } from './components/SearchPage/SearchPage';
 import { UserContextProvider } from './contexts/UserContext';
+import { CurrentUserRecipes } from './components/CurrentUserRecipes/CurrentUserRecipes';
 
 const App: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const App: React.FC = () => {
           <Route path="/login" element={<SignInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/user/recipes" element={<CurrentUserRecipes />} />
         </Routes>
       </BrowserRouter>
     </UserContextProvider>

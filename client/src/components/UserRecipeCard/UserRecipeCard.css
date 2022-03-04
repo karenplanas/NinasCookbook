@@ -1,0 +1,31 @@
+.UserRecipeCard {
+  background-color: white;
+  display: flex;
+  width: 850px;
+  border-radius: 8px;
+  box-shadow: 2px 6px 12px rgba(0,0,0,0.2);
+  padding: 16px;
+}
+
+.UserRecipeCard-image-container {
+  background-color: aqua;
+}
+
+.user-recipe-details {
+  background-color: rgb(220, 186, 252);
+  width: 100%;
+  padding-left: 24px;
+}
+
+.userRecipeCard-options {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  background-color: aquamarine;
+}
+
+.userRecipeCard-options p {
+  font-size: 12pt;
+  text-decoration: underline;
+  cursor: pointer;
+}

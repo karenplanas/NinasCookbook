@@ -17,6 +17,7 @@ router.get('/me', authMiddleware, usersController.getOne);
 
 //Profile routes
 router.get('/user/recipes', authMiddleware, recipesController.getCurrentUserRecipes);
+
 router.get('/users/:userId/recipes', authMiddleware, recipesController.getUserRecipes);
 
 module.exports = router;

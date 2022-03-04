@@ -11,7 +11,7 @@ import { User } from '../../interfaces/User'
 import { useUserContext } from '../../contexts/UserContext'
 
 const SignUpPage: React.FC = () => {
-  const { register, handleSubmit, formState:{ errors} } = useForm<User>({
+  const { register, handleSubmit, formState:{errors} } = useForm<User>({
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -38,24 +38,28 @@ const SignUpPage: React.FC = () => {
         <InputTextField 
           type="text" 
           label="First name *" 
+          errorMessage={errors.firstName?.message}
           {...register("firstName", { required: "This field is required"})}
         />
-        <p className='validation'>{errors.firstName?.message}</p>
+
         <InputTextField 
           type="text" 
-          label="Last name *" 
+          label="Last name *"
+          errorMessage={errors.lastName?.message} 
           {...register("lastName", {required: "This field is required"})} 
         />
-        <p className='validation'>{errors.lastName?.message}</p>
+      
         <InputTextField 
           type="text" 
-          label="Email *" 
+          label="Email *"
+          errorMessage={errors.email?.message} 
           {...register("email", {required: "This field is required"})}
         />
-        <p className='validation'>{errors.email?.message}</p>
+        
         <InputTextField 
           type="password" 
           label="Password *" 
+          errorMessage={errors.password?.message}
           {...register("password", {
             required: "This field is required", 
             minLength: {
@@ -64,7 +68,7 @@ const SignUpPage: React.FC = () => {
             }
           })} 
         />
-        <p className='validation'>{errors.password?.message}</p>
+
         <Button className="contained" name="Sign Up" type="submit"/>
       </form>
       <p className='yes-account'>Already have an account? <Link to="/login"><span>Sign In</span></Link></p>

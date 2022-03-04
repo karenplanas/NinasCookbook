@@ -1,5 +1,5 @@
 import React from 'react'
-import { useForm, useFieldArray, Controller, FormProvider } from 'react-hook-form';
+import { useForm, useFieldArray, FormProvider } from 'react-hook-form';
 
 import './NewRecipe.css'
 import { Button } from '../Button/Button'
@@ -9,8 +9,12 @@ import { LayoutNav } from '../LayoutNav/LayoutNav'
 import { Recipe } from '../../interfaces/Recipe';
 import { useRecipeApiClient } from '../../services/ApiClient'
 import { useNavigate } from 'react-router-dom';
+import { useNavigateIfNotAuthenticated } from '../../contexts/UserContext';
 
 const NewRecipe: React.FC = () => {
+
+  useNavigateIfNotAuthenticated();
+
   const methods = useForm<Recipe>({
     defaultValues: {
       name: 'Croissansito',

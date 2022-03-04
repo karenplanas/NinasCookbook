@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Credentials } from '../interfaces/Credentials';
 import { User } from '../interfaces/User'
 import * as ApiClient from '../services/ApiClient';
@@ -40,6 +41,7 @@ const UserContextProvider : React.FC = ({ children }) => {
   const logout = () => {
     setUser(undefined);
     window.localStorage.removeItem(STORAGE_KEY);
+    
   }
 
   const value = {
@@ -60,4 +62,12 @@ const useUserContext = (): UserContextInterface => {
   return useContext(UserContext) as UserContextInterface
 }
 
-export { UserContextProvider, useUserContext }
+const useNavigateIfNotAuthenticated = () => {
+  const { user } = useUserContext();
+  const navigate = useNavigate();
+  useEffect(()=> {
+    !user && navigate('/login');
+  }, [user, navigate])
+}
+
+export { UserContextProvider, useUserContext, useNavigateIfNotAuthenticated }

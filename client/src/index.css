@@ -1,9 +1,8 @@
 :root {
   --primary-color: #296F4A;
   --primary-color-5: #39875D;
-
-
   --primary-color-dark: #133F28;
+  --alert-color: rgb(172, 41, 41);
 }
 
 body {

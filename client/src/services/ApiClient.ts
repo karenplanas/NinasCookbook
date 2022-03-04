@@ -56,8 +56,13 @@ const useRecipeApiClient = () => {
     return performRequest({method:'DELETE', path:`${userRecipesPath}/${recipeId}`, token: user?.accessToken })
   }
 
+  const fetchUserRecipes = (): Promise<Recipe[]> => {
+    return performRequest({method:'GET', path: userRecipesPath, token: user?.accessToken})
+  }
+
   return {
     createRecipe,
+    fetchUserRecipes,
     deleteRecipe
   }
 }

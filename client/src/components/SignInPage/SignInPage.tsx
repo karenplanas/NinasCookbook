@@ -12,7 +12,12 @@ import { User } from '../../interfaces/User';
 import { useUserContext } from '../../contexts/UserContext';
 
 const SignInPage : React.FC = () => {
-  const { register, handleSubmit } = useForm<User>();
+  const { register, handleSubmit, formState:{errors} } = useForm<User>({
+    defaultValues: {
+      email: "",
+      password: ""
+    }
+  });
   const { user, login } = useUserContext();
   const navigate = useNavigate();
 
@@ -27,16 +32,18 @@ const SignInPage : React.FC = () => {
   return (
     <LayoutFullScreen image={image}>
       <h3>Sign In</h3>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className='sign-in-form' onSubmit={handleSubmit(onSubmit)}>
         <InputTextField 
           type="text" 
           label="Email *"
-          { ...register("email", {required: true})}
+          errorMessage={errors.password?.message}
+          { ...register("email", {required: "This field is required"})}
         />
         <InputTextField 
           type="password" 
-          label="Password *" 
-          {...register("password", {required: true})}
+          label="Password *"
+          errorMessage={errors.password?.message}
+          {...register("password", {required: "This field is required"})}
         />
         <div className='remember-me'>
           <InputCheckBox name= "remember-me" label="Remember me"/>

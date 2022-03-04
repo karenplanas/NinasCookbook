@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useUserContext } from '../../contexts/UserContext'
+import { useQuery } from 'react-query'
+import { useNavigateIfNotAuthenticated } from '../../contexts/UserContext'
 import { Recipe } from '../../interfaces/Recipe'
-import { fetchUserRecipes, useRecipeApiClient } from '../../services/ApiClient'
-import { DeleteIcon } from '../icons/DeleteIcon'
+import { useRecipeApiClient } from '../../services/ApiClient'
 import { LayoutNav } from '../LayoutNav/LayoutNav'
 import { UserRecipeCard } from '../UserRecipeCard/UserRecipeCard'
 import './CurrentUserRecipes.css'
@@ -11,24 +10,23 @@ import './CurrentUserRecipes.css'
 
 const CurrentUserRecipes : React.FC = () => {
 
-  const { user } = useUserContext();
-  const [userRecipes, setUserRecipes] = useState<Recipe[]>([]);
+  useNavigateIfNotAuthenticated();
+  // const [userRecipes, setUserRecipes] = useState<Recipe[]>([]);
 
-  const fetchRecipes = () => {
-    fetchUserRecipes(user)
-    .then((userRecipes) => setUserRecipes(userRecipes));
-  }
+  // const fetchRecipes = () => {
+  //   .then((userRecipes) => setUserRecipes(userRecipes));
+  // }
 
-  useEffect(()=>{
-    fetchRecipes()
-  }, [])
+  const { deleteRecipe, fetchUserRecipes } = useRecipeApiClient();
+  const { data: userRecipes, refetch } = useQuery('fetchUserRecipes', fetchUserRecipes)
 
-  const { deleteRecipe } = useRecipeApiClient();
-  
+  // useEffect(()=>{
+  //   fetchRecipes()
+  // }, [])
 
   const onDelete = async (recipeId: string) => {
     await deleteRecipe(recipeId);
-    fetchRecipes()
+    refetch()
   }
 
   return (
@@ -36,7 +34,7 @@ const CurrentUserRecipes : React.FC = () => {
       <div className='CurrentUserRecipes'>
         <h3>My Recipes</h3>
         {
-          userRecipes.map((r)=>(
+          userRecipes?.map((r)=>(
             <UserRecipeCard recipe={r} key={r._id} handleDelete={onDelete}/>
           ))
         }

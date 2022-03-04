@@ -34,3 +34,12 @@ input:focus-visible, textarea:focus-visible{
 .InputTextField textarea {
   line-height: 24px;
 }
+
+.error, .error input, .error.InputTextField:focus-within label {
+  color: var(--alert-color);
+  border-color: var(--alert-color);
+}
+
+.error p {
+  font-style: italic;
+}

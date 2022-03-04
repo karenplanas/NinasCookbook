@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { MenuIcon } from '../icons/MenuIcon'
 import './Menu.css'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useUserContext } from '../../contexts/UserContext'
 
 //https://letsbuildui.dev/articles/building-a-dropdown-menu-component-with-react-hooks
@@ -29,14 +29,16 @@ const Menu: React.FC = () => {
 
   }, [isActive])
 
+  const navigate = useNavigate();
+
   return (
     <div className='menu-container'>
       <MenuIcon onClick={onClick} color="black" className="menu-trigger"/>
       <nav onClick={onClick} ref={menuRef} className={`menu ${isActive ? 'active' : 'inactive'}`}>
         <ul>
-          <Link to="/new-recipe"><li>Add new Recipe</li></Link>
+          <Link to={"/new-recipe"}><li>Add new Recipe</li></Link>
           <Link to="/user/recipes"><li>My Recipes</li></Link>
-          <li className="clickable" onClick={() => logout()}>Logout</li>
+          <li className="clickable" onClick={() => {logout(); navigate('/')}}>Logout</li>
         </ul>
       </nav>
     </div>

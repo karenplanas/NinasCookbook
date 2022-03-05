@@ -1,24 +1,32 @@
 const Router = require('koa-router');
-const recipesController = require('./controllers/controllers-recipes')
-const usersController = require('./controllers/controllers-users')
-const { authMiddleware } = require('./middlewares/auth')
+const recipesController = require('./controllers/controllers-recipes');
+const usersController = require('./controllers/controllers-users');
+const { authMiddleware } = require('./middlewares/auth');
 
 const router = new Router();
 
-//Recipe routes
+// Recipe routes
 router.get('/recipes', recipesController.getAll);
 router.get('/recipes/:id', recipesController.getOne);
 router.post('/recipes', authMiddleware, recipesController.addOne);
 
-//User routes
+// User routes
 router.post('/register', usersController.create);
 router.post('/login', usersController.login);
 router.get('/me', authMiddleware, usersController.getOne);
 
-//Profile routes
-router.get('/user/recipes', authMiddleware, recipesController.getCurrentUserRecipes);
-router.delete('/user/recipes/:id', authMiddleware, recipesController.deleteOne)
+// Profile routes
+router.get(
+  '/user/recipes',
+  authMiddleware,
+  recipesController.getCurrentUserRecipes
+);
+router.delete('/user/recipes/:id', authMiddleware, recipesController.deleteOne);
 
-router.get('/users/:userId/recipes', authMiddleware, recipesController.getUserRecipes);
+router.get(
+  '/users/:userId/recipes',
+  authMiddleware,
+  recipesController.getUserRecipes
+);
 
 module.exports = router;

@@ -1,23 +1,23 @@
-const { verifyJwt } = require('../utils/jwt-utils.js');
+const { verifyJwt } = require('../utils/jwt-utils');
 
 const authMiddleware = async (ctx, next) => {
-  const authHeaders = ctx.request.headers['authorization'];
-  
+  const authHeaders = ctx.request.headers.authorization;
+
   if (!authHeaders) {
     ctx.status = 401;
-    return
-  } 
-  
+    return;
+  }
+
   const token = authHeaders.split(' ')[1];
   const user = verifyJwt(token);
 
-  if(!user) {    
+  if (!user) {
     ctx.status = 401;
-    return 
+    return;
   }
 
   ctx.request.user = user;
   await next();
-}
+};
 
-module.exports = { authMiddleware }
+module.exports = { authMiddleware };

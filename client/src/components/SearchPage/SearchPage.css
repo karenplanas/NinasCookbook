@@ -7,11 +7,9 @@ span {
 .no-recipes-found {
   display: flex;
   flex-direction: column;
-  gap: 40px
-    
+  gap: 40px;
 }
 
-.no-recipes-found img{
+.no-recipes-found img {
   height: 500px;
 }
-

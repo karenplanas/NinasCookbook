@@ -5,7 +5,7 @@
 .list {
   width: 100%;
   display: inline-grid;
-  grid-template-columns: auto auto auto ;
+  grid-template-columns: auto auto auto;
   gap: 24px;
 }
 

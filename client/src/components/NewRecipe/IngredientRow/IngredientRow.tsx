@@ -1,9 +1,9 @@
-import React from 'react'
-import { useFormContext } from 'react-hook-form'
-import { DropDownList } from '../../DropDownList/DropDownList'
-import { DeleteIcon } from '../../icons/DeleteIcon'
-import { InputTextField } from '../../InputTextField/InputTextField'
-import './IngredientRow.css'
+import React from 'react';
+import { useFormContext } from 'react-hook-form';
+import { DropDownList } from '../../DropDownList/DropDownList';
+import { DeleteIcon } from '../../icons/DeleteIcon';
+import { InputTextField } from '../../InputTextField/InputTextField';
+import './IngredientRow.css';
 
 const options = [
   {
@@ -26,25 +26,38 @@ const options = [
   {
     value: 'tbsp',
     label: 'tbsp'
-  },
-]
+  }
+];
 
 interface Props {
-  showLabel?: boolean
-  name: string
-  onDeleteClick: () => void
+  showLabel?: boolean;
+  name: string;
+  onDeleteClick: () => void;
 }
 
 const IngredientRow: React.FC<Props> = ({ showLabel, name, onDeleteClick }) => {
-  const { register } = useFormContext()
+  const { register } = useFormContext();
   return (
-    <div className='IngredientRow'>
-      <InputTextField label={showLabel ? 'Name' : undefined} className='name' { ...register(`${name}.name`) }/>
-      <InputTextField label={showLabel ? 'Quantity' : undefined} type='number' className='quantity' { ...register(`${name}.quantity`) }/>
-      <DropDownList label={showLabel ? 'Unit' : undefined} options={options} className="unit-dropdown-list"/>
-      <DeleteIcon color="red" className='delete' onClick={onDeleteClick}/>
+    <div className="IngredientRow">
+      <InputTextField
+        label={showLabel ? 'Name' : undefined}
+        className="name"
+        {...register(`${name}.name`)}
+      />
+      <InputTextField
+        label={showLabel ? 'Quantity' : undefined}
+        type="number"
+        className="quantity"
+        {...register(`${name}.quantity`)}
+      />
+      <DropDownList
+        label={showLabel ? 'Unit' : undefined}
+        options={options}
+        className="unit-dropdown-list"
+      />
+      <DeleteIcon color="red" className="delete" onClick={onDeleteClick} />
     </div>
-  )
-}
+  );
+};
 
-export { IngredientRow }
+export { IngredientRow };

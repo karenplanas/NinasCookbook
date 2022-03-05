@@ -1,4 +1,3 @@
-
 .InputTextField {
   display: flex;
   flex-direction: column;
@@ -12,7 +11,8 @@
   font-size: 12pt;
 }
 
-.InputTextField input, .InputTextField textarea {
+.InputTextField input,
+.InputTextField textarea {
   padding: 16px;
   border-style: none;
   border: solid 2px;
@@ -21,7 +21,8 @@
   font-size: 12pt;
 }
 
-input:focus-visible, textarea:focus-visible{
+input:focus-visible,
+textarea:focus-visible {
   border: 2px solid var(--primary-color);
 }
 
@@ -35,7 +36,9 @@ input:focus-visible, textarea:focus-visible{
   line-height: 24px;
 }
 
-.error, .error input, .error.InputTextField:focus-within label {
+.error,
+.error input,
+.error.InputTextField:focus-within label {
   color: var(--alert-color);
   border-color: var(--alert-color);
 }

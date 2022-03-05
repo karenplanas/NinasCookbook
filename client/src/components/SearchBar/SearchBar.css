@@ -4,14 +4,14 @@
   align-items: center;
   gap: 12px;
   width: 100%;
-  max-width: 380px; 
+  max-width: 380px;
 }
 
 .SearchBar-text-field {
   width: 100%;
 }
 
-.SearchBar-text-field input{
+.SearchBar-text-field input {
   padding: 12px !important;
   padding-left: 16px !important;
 }

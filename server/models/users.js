@@ -1,26 +1,27 @@
 const mongoose = require('mongoose');
+
 const { Schema, model } = mongoose;
-const { comparePassword, encrypt } = require ('../utils/encrypt-utils');
-const { generateJwt } = require('../utils/jwt-utils')
+const { comparePassword, encrypt } = require('../utils/encrypt-utils');
+const { generateJwt } = require('../utils/jwt-utils');
 
 const userSchema = new Schema({
   firstName: {
     type: String,
-    required: true,
-  }, 
+    required: true
+  },
   lastName: {
     type: String,
-    required: true,
+    required: true
   },
   email: {
     type: String,
-    required: true,
-  }, 
+    required: true
+  },
   password: {
     type: String,
-    required: true,
+    required: true
   }
-})
+});
 
 const User = model('user', userSchema);
 
@@ -47,11 +48,14 @@ const User = model('user', userSchema);
 //   }
 // }
 
-const createUser = async(user) => {
+const createUser = async (user) => {
   try {
-    const newUser = await User.create({...user, password: encrypt(user.password)}).then(d => d._doc);
+    const newUser = await User.create({
+      ...user,
+      password: encrypt(user.password)
+    }).then((d) => d._doc);
     return generateJwt(newUser);
-  } catch(error) {
+  } catch (error) {
     // if(...) {
     //   throw UserAlreadyExistsError()
     // } else if(...) {
@@ -60,33 +64,35 @@ const createUser = async(user) => {
     //   throw error
     // }
     console.error(error);
-    throw error
+    throw error;
   }
-}
+};
 
-const getUsers = async() => {
+const getUsers = async () => {
   try {
     return await User.find();
   } catch (error) {
     console.error(error);
-    throw error
+    throw error;
   }
-}
+};
 
-const getUser = async(id) => {
+const getUser = async (id) => {
   try {
-    return await User.findOne({_id:id});
+    return await User.findOne({ _id: id });
   } catch (error) {
     console.error(error);
-    throw error
+    throw error;
   }
-}
+};
 
 const validateLogin = async (email, password) => {
-  const user = await User.findOne({ email: email}).then(d => d._doc);
-  if (user && comparePassword(password, user.password)){
+  const user = await User.findOne({ email }).then((d) => d._doc);
+  if (user && comparePassword(password, user.password)) {
     return generateJwt(user);
   }
-}
 
-module.exports = { createUser, getUsers, validateLogin, User, getUser }
+  return undefined;
+};
+
+module.exports = { createUser, getUsers, validateLogin, User, getUser };

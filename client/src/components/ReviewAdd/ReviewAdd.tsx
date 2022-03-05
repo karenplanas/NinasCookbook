@@ -6,9 +6,9 @@ import { useRecipeApiClient } from '../../services/ApiClient'
 import { Button } from '../Button/Button'
 import { InputTextArea } from '../InputTextField/InputTextField'
 import { StarRate } from '../StarRate/StarRate'
-import './Review.css'
+import './ReviewAdd.css'
 
-const Review : React.FC = () => {
+const ReviewAdd : React.FC = () => {
 
   const { register, handleSubmit } = useForm<ReviewInterface>({
     defaultValues: {
@@ -37,4 +37,4 @@ const Review : React.FC = () => {
   )
 }
 
-export { Review }
+export { ReviewAdd }

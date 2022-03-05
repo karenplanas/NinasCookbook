@@ -60,3 +60,9 @@
 .ingredients p {
   display: inline;
 }
+
+.reviews-area {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}

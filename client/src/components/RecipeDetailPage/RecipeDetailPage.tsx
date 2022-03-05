@@ -2,19 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { Recipe } from '../../interfaces/Recipe';
 import './RecipeDetailPage.css';
 import { useParams } from 'react-router-dom';
-import { fetchRecipe } from '../../services/ApiClient';
+import { fetchRecipe, useRecipeApiClient } from '../../services/ApiClient';
 import { LayoutNav } from '../LayoutNav/LayoutNav';
-import { Review } from '../Review/Review';
+import { ReviewAdd } from '../ReviewAdd/ReviewAdd';
+import { ReviewInterface } from '../../interfaces/ReviewInterface';
+import { ReviewsList } from '../ReviewsList/ReviewsList';
 
 interface Props {}
 
 const RecipeDetailPage: React.FC<Props> = () => {
   const { recipeId } = useParams();
   const [recipe, setRecipe] = useState<Recipe>();
+  const [reviews, setReviews] = useState<ReviewInterface[]>([]);
 
   useEffect(() => {
     fetchRecipe(recipeId).then((result) => setRecipe(result));
   }, [recipeId]);
+  
+  const {fetchRecipeReviews} = useRecipeApiClient();
+  useEffect(()=>{
+    fetchRecipeReviews(recipeId!).then((result) => setReviews(result));
+  }, [recipeId, fetchRecipeReviews])
 
   if (!recipe) return null;
   return (
@@ -61,7 +69,10 @@ const RecipeDetailPage: React.FC<Props> = () => {
           <h3 className="titles">Serving:</h3>
         </div>
       </div>
-      <Review />
+      <div className='reviews-area'>
+        <ReviewAdd />
+        <ReviewsList reviews={reviews}/>
+      </div>
     </LayoutNav>
   );
 };

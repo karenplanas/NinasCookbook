@@ -61,8 +61,7 @@ const fetchRecipesByName = (searchValue: string | null): Promise<Recipe[]> => {
 const useRecipeApiClient = () => {
   const { user } = useUserContext();
 
-  const createRecipe = useCallback(
-    (recipe: Recipe) => {
+  const createRecipe = useCallback((recipe: Recipe) => {
       return performRequest({
         method: 'POST',
         path: `${recipesPath}`,
@@ -73,8 +72,7 @@ const useRecipeApiClient = () => {
     [user]
   );
 
-  const deleteRecipe = useCallback(
-    (recipeId: string) => {
+  const deleteRecipe = useCallback((recipeId: string) => {
       return performRequest({
         method: 'DELETE',
         path: `${userRecipesPath}/${recipeId}`,
@@ -94,21 +92,22 @@ const useRecipeApiClient = () => {
 
   // ***** Reviews requests *****
 
-  const fetchRecipeReviews = (recipeId: string): Promise<ReviewInterface[]> => {
+  const fetchRecipeReviews = useCallback((recipeId: string): Promise<ReviewInterface[]> => {
     return performRequest({
       method: 'GET',
       path: `${recipesPath}/${recipeId}/reviews`,
+      token: user?.accessToken
     })
-  }
+  }, [user])
 
-  const createReview = (review : ReviewInterface): Promise<ReviewInterface> => {
+  const createReview = useCallback((review : ReviewInterface): Promise<ReviewInterface> => {
     return performRequest({
       method: 'POST',
       path: `${recipesPath}/${review.recipeId}/reviews`,
       body: review,
       token: user?.accessToken
     })
-  }
+  }, [user])
 
   return {
     createRecipe,

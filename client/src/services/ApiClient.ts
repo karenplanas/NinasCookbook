@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useUserContext } from '../contexts/UserContext';
 import { Credentials } from '../interfaces/Credentials';
 import { Recipe } from '../interfaces/Recipe';
@@ -57,30 +58,36 @@ const fetchRecipesByName = (searchValue: string | null): Promise<Recipe[]> => {
 const useRecipeApiClient = () => {
   const { user } = useUserContext();
 
-  const createRecipe = (recipe: Recipe) => {
-    return performRequest({
-      method: 'POST',
-      path: `${recipesPath}`,
-      body: recipe,
-      token: user?.accessToken
-    });
-  };
+  const createRecipe = useCallback(
+    (recipe: Recipe) => {
+      return performRequest({
+        method: 'POST',
+        path: `${recipesPath}`,
+        body: recipe,
+        token: user?.accessToken
+      });
+    },
+    [user]
+  );
 
-  const deleteRecipe = (recipeId: string) => {
-    return performRequest({
-      method: 'DELETE',
-      path: `${userRecipesPath}/${recipeId}`,
-      token: user?.accessToken
-    });
-  };
+  const deleteRecipe = useCallback(
+    (recipeId: string) => {
+      return performRequest({
+        method: 'DELETE',
+        path: `${userRecipesPath}/${recipeId}`,
+        token: user?.accessToken
+      });
+    },
+    [user]
+  );
 
-  const fetchUserRecipes = (): Promise<Recipe[]> => {
+  const fetchUserRecipes = useCallback((): Promise<Recipe[]> => {
     return performRequest({
       method: 'GET',
       path: userRecipesPath,
       token: user?.accessToken
     });
-  };
+  }, [user]);
 
   return {
     createRecipe,

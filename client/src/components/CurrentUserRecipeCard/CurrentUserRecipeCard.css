@@ -9,10 +9,10 @@
 
 .UserRecipeCard-image-container {
   background-color: aqua;
+  width: 200px;
 }
 
 .user-recipe-details {
-  background-color: rgb(220, 186, 252);
   width: 100%;
   padding-left: 24px;
 }
@@ -21,11 +21,11 @@
   display: flex;
   gap: 16px;
   justify-content: flex-end;
-  background-color: aquamarine;
 }
 
 .userRecipeCard-options p {
   font-size: 12pt;
   text-decoration: underline;
   cursor: pointer;
+  color: var(--primary-color-dark);
 }

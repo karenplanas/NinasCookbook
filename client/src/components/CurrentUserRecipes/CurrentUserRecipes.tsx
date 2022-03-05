@@ -3,7 +3,7 @@ import { useNavigateIfNotAuthenticated } from '../../contexts/UserContext';
 import { Recipe } from '../../interfaces/Recipe';
 import { useRecipeApiClient } from '../../services/ApiClient';
 import { LayoutNav } from '../LayoutNav/LayoutNav';
-import { UserRecipeCard } from '../UserRecipeCard/UserRecipeCard';
+import { CurrentUserRecipeCard } from '../CurrentUserRecipeCard/CurrentUserRecipeCard';
 import './CurrentUserRecipes.css';
 
 const CurrentUserRecipes: React.FC = () => {
@@ -30,7 +30,11 @@ const CurrentUserRecipes: React.FC = () => {
       <div className="CurrentUserRecipes">
         <h3>My Recipes</h3>
         {userRecipes?.map((r) => (
-          <UserRecipeCard recipe={r} key={r._id} handleDelete={onDelete} />
+          <CurrentUserRecipeCard
+            recipe={r}
+            key={r._id}
+            handleDelete={onDelete}
+          />
         ))}
       </div>
     </LayoutNav>

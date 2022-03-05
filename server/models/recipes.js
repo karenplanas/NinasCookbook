@@ -32,7 +32,6 @@ const getRecipesByName = (searchValue) =>
   ).sort({ score: { $meta: 'textScore' } });
 
 const addRecipe = async (recipe) => {
-  const test = {};
   const r = new Recipes(recipe);
   return r.save();
 };

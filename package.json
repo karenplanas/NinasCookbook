@@ -11,14 +11,13 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint ./ --fix",
-    "prettier": "prettier --config .prettierrc './**/*.(js|jsx|ts|tsx|json|css)' --write",
     "start:client": "yarn workspace client start",
     "start:server": "yarn workspace server start",
     "start": "yarn start:server & yarn start:client"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint && yarn prettier"
+      "pre-commit": "yarn lint"
     }
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './UserRecipeCard.css';
+import './CurrentUserRecipeCard.css';
 import { Recipe } from '../../interfaces/Recipe';
 import { Link } from 'react-router-dom';
 

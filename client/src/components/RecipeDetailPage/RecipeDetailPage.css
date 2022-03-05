@@ -44,11 +44,19 @@
 }
 
 .ingredients-container {
-  /* width: 500px; */
   flex: 1;
 }
 
 .preparation-container {
-  /* width: 500px; */
   flex: 2;
+}
+
+.ingredients {
+  list-style-position: inside;
+  list-style-type: circle;
+  /* list-style-image: url('sqpurple.gif'); */
+}
+
+.ingredients p {
+  display: inline;
 }

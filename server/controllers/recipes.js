@@ -1,14 +1,19 @@
-const { getRecipes, addRecipe, getRecipe, getRecipesByName, ...RecipeModel } = require('../models/recipes');
+const RecipeModel = require('../models/recipes');
+
+const getOne = async (ctx) => {
+  ctx.body = await RecipeModel.getRecipe(ctx.params.id);
+  ctx.status = 200;
+};
 
 const getAll = async (ctx) => {
   const { searchValue } = ctx.request.query;
-  const recipes = searchValue ? await getRecipesByName(searchValue) : await getRecipes();
+  const recipes = searchValue ? await RecipeModel.getRecipesByName(searchValue) : await RecipeModel.getRecipes();
   ctx.status = 200;
   ctx.body = recipes;
 };
 
 const addOne = async (ctx) => {
-  const recipe = await addRecipe({
+  const recipe = await RecipeModel.addRecipe({
     ...ctx.request.body,
     userId: ctx.request.user._id
   });
@@ -16,9 +21,9 @@ const addOne = async (ctx) => {
   ctx.body = recipe;
 };
 
-const getOne = async (ctx) => {
-  ctx.body = await getRecipe(ctx.params.id);
-  ctx.status = 200;
+const deleteOne = async (ctx) => {
+  ctx.body = await RecipeModel.deleteRecipe(ctx.params.id);
+  ctx.state = 204;
 };
 
 const getUserRecipes = async (ctx) => {
@@ -33,11 +38,6 @@ const getCurrentUserRecipes = async (ctx) => {
   const recipes = await RecipeModel.getUserRecipes(userId);
   ctx.status = 200;
   ctx.body = recipes;
-};
-
-const deleteOne = async (ctx) => {
-  ctx.body = await RecipeModel.deleteRecipe(ctx.params.id);
-  ctx.state = 204;
 };
 
 module.exports = {

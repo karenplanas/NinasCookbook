@@ -1,26 +1,27 @@
 const Router = require('koa-router');
-const recipesController = require('./controllers/controllers-recipes');
-const usersController = require('./controllers/controllers-users');
-const reviewController = require('./controllers/controllers-reviews');
+const RecipesController = require('./controllers/recipes');
+const UsersController = require('./controllers/users');
+const ReviewsController = require('./controllers/reviews');
 const { authMiddleware } = require('./middlewares/auth');
 
 const router = new Router();
 
 // Recipe routes
-router.get('/recipes', recipesController.getAll);
-router.get('/recipes/:id', recipesController.getOne);
-router.post('/recipes', authMiddleware, recipesController.addOne);
+router.get('/recipes', RecipesController.getAll);
+router.get('/recipes/:id', RecipesController.getOne);
+router.post('/recipes', authMiddleware, RecipesController.addOne);
 // Recipes by Users routes
-router.get('/user/recipes', authMiddleware, recipesController.getCurrentUserRecipes);
-router.delete('/user/recipes/:id', authMiddleware, recipesController.deleteOne);
-router.get('/users/:userId/recipes', authMiddleware, recipesController.getUserRecipes);
+router.get('/user/recipes', authMiddleware, RecipesController.getCurrentUserRecipes);
+router.delete('/user/recipes/:id', authMiddleware, RecipesController.deleteOne);
+router.get('/users/:userId/recipes', authMiddleware, RecipesController.getUserRecipes);
 
 // Review routes
-router.get('/recipes/:recipeId/reviews', authMiddleware, reviewController.addOneReview);
+router.post('/recipes/:recipeId/reviews', authMiddleware, ReviewsController.addOne);
+router.get('/recipes/:recipeId/reviews', authMiddleware, ReviewsController.getAll);
 
 // User routes
-router.post('/register', usersController.create);
-router.post('/login', usersController.login);
-router.get('/me', authMiddleware, usersController.getOne);
+router.post('/register', UsersController.create);
+router.post('/login', UsersController.login);
+router.get('/me', authMiddleware, UsersController.getOne);
 
 module.exports = router;

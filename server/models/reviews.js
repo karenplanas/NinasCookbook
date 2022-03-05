@@ -20,4 +20,9 @@ const addReview = async (review) => {
   return newReview;
 };
 
-module.exports = { addReview };
+const getRecipeReviews = async (recipeId) => {
+  const reviews = Review.find({ recipeId });
+  return reviews;
+};
+
+module.exports = { addReview, getRecipeReviews };

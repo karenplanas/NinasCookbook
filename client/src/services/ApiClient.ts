@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useUserContext } from '../contexts/UserContext';
 import { Credentials } from '../interfaces/Credentials';
 import { Recipe } from '../interfaces/Recipe';
-import { Review } from '../interfaces/Review';
+import { ReviewInterface } from '../interfaces/ReviewInterface';
 import { User } from '../interfaces/User';
 
 const baseUrl = 'http://localhost:3000';
@@ -92,10 +92,30 @@ const useRecipeApiClient = () => {
     });
   }, [user]);
 
+  // ***** Reviews requests *****
+
+  const fetchRecipeReviews = (recipeId: string): Promise<ReviewInterface[]> => {
+    return performRequest({
+      method: 'GET',
+      path: `${recipesPath}/${recipeId}/reviews`,
+    })
+  }
+
+  const createReview = (review : ReviewInterface): Promise<ReviewInterface> => {
+    return performRequest({
+      method: 'POST',
+      path: `${recipesPath}/${review.recipeId}/reviews`,
+      body: review,
+      token: user?.accessToken
+    })
+  }
+
   return {
     createRecipe,
     fetchUserRecipes,
-    deleteRecipe
+    deleteRecipe, 
+    createReview, 
+    fetchRecipeReviews
   };
 };
 
@@ -123,23 +143,6 @@ const fetchUserRecipes = (user: User | undefined): Promise<Recipe[]> => {
   });
 };
 
-// ***** Reviews requests *****
-
-const fetchRecipeReviews = (recipeId: string): Promise<Review[]> => {
-  return performRequest({
-    method: 'GET',
-    path: `${recipesPath}/${recipeId}/reviews`,
-  })
-}
-
-const createReview = (review : Review): Promise<Review> => {
-  return performRequest({
-    method: 'POST',
-    path: `${recipesPath}/${review.recipeId}/reviews`,
-  })
-}
-
-
 export {
   fetchRecipes,
   fetchRecipe,
@@ -148,6 +151,4 @@ export {
   loginUser,
   useRecipeApiClient,
   fetchUserRecipes,
-  fetchRecipeReviews,
-  createReview
 };

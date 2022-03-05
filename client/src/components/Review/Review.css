@@ -1,0 +1,19 @@
+.Review {
+  display: flex;
+  flex-direction: column;
+  width: 1100px;
+  padding: 16px 48px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+.Review h3 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.rate-send-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

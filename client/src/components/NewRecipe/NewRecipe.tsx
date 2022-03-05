@@ -39,20 +39,12 @@ const NewRecipe: React.FC = () => {
 
   //React Hook Form - useFieldArray - https://react-hook-form.com/api/usefieldarray/
   //CodeSandbox https://codesandbox.io/s/vy8fv
-  const {
-    fields: ingredientFields,
-    append,
-    remove
-  } = useFieldArray({
+  const { fields: ingredientFields, append, remove } = useFieldArray({
     control,
     name: 'ingredients'
   });
 
-  const {
-    fields: stepFields,
-    append: appendStep,
-    remove: removeStep
-  } = useFieldArray({
+  const { fields: stepFields, append: appendStep, remove: removeStep } = useFieldArray({
     control,
     name: 'steps'
   });
@@ -142,10 +134,7 @@ const NewRecipe: React.FC = () => {
                     </p>
                   </div>
                   <div>
-                    <p
-                      className="add-more"
-                      onClick={() => removeStep(stepFields.length - 1)}
-                    >
+                    <p className="add-more" onClick={() => removeStep(stepFields.length - 1)} >
                       Remove last step
                     </p>
                   </div>

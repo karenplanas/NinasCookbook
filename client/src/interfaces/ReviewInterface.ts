@@ -1,4 +1,4 @@
-export interface Review {
+export interface ReviewInterface {
   rating: number
   comment: string
   userId: string

@@ -12,11 +12,7 @@ import { User } from '../../interfaces/User';
 import { useUserContext } from '../../contexts/UserContext';
 
 const SignInPage: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm<User>({
+  const { register, handleSubmit, formState: { errors } } = useForm<User>({
     defaultValues: {
       email: '',
       password: ''

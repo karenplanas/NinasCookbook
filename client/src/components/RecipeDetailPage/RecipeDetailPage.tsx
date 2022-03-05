@@ -4,6 +4,7 @@ import './RecipeDetailPage.css';
 import { useParams } from 'react-router-dom';
 import { fetchRecipe } from '../../services/ApiClient';
 import { LayoutNav } from '../LayoutNav/LayoutNav';
+import { Review } from '../Review/Review';
 
 interface Props {}
 
@@ -60,6 +61,7 @@ const RecipeDetailPage: React.FC<Props> = () => {
           <h3 className="titles">Serving:</h3>
         </div>
       </div>
+      <Review />
     </LayoutNav>
   );
 };

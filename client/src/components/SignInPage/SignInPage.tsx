@@ -52,7 +52,7 @@ const SignInPage: React.FC = () => {
         <Button className="contained" name="Sign In" type="submit" />
       </form>
       <p className="no-account">
-        Don't have an account yet?{' '}
+        Don't have an account yet?
         <Link to="/sign-up">
           <span>Sign Up</span>
         </Link>

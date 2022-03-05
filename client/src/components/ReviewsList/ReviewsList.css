@@ -1,9 +1,23 @@
 .ReviewsList {
   width: 1100px;
-  padding: 48px;
+  padding: 24px 48px;
   margin-bottom: 24px;
   background-color: white;
   border-radius: 8px;
   box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.1);
 }
 
+.ReviewsList li {
+  list-style-type: none;
+}
+
+.ReviewsList h3 {
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+
+.comment-rating {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

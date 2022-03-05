@@ -15,7 +15,6 @@ const RecipesList: React.FC<Props> = ({ listTitle, recipesList }) => {
     <div className="recipes-list">
       <h2>{listTitle}</h2>
       <ul className="list">
-        {' '}
         {recipes.map((r) => (
           <li key={r._id}>
             <Link to={`/recipes/${r._id}`}>

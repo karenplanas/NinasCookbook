@@ -7,6 +7,8 @@ import { LayoutNav } from '../LayoutNav/LayoutNav';
 import { ReviewAdd } from '../ReviewAdd/ReviewAdd';
 import { ReviewInterface } from '../../interfaces/ReviewInterface';
 import { ReviewsList } from '../ReviewsList/ReviewsList';
+import { SaltAndPepper } from '../icons/SaltAndPepper';
+import { Utensils } from '../icons/Utensils';
 
 interface Props {}
 
@@ -38,9 +40,11 @@ const RecipeDetailPage: React.FC<Props> = () => {
 
         <div className="recipe-detail-page-text-container">
           <div className="ingredients-container">
-            <h3 className="titles">Ingredients:</h3>
+            <div className='titles-logo'>
+              <h3 className="titles">Ingredients</h3>
+              <SaltAndPepper />
+            </div>
             <ul className="ingredients">
-              {' '}
               {recipe.ingredients.map((i) => (
                 <li key={i._id}>
                   <p>
@@ -52,9 +56,11 @@ const RecipeDetailPage: React.FC<Props> = () => {
           </div>
 
           <div className="preparation-container">
-            <h3 className="titles">Preparation:</h3>
+            <div className='titles-logo '>
+              <h3 className="titles">Preparation</h3>
+              <Utensils />
+            </div>
             <ul className="steps">
-              {' '}
               {recipe.steps.map((s) => (
                 <li key={s._id}>
                   <h4 className="step">{s.name}</h4>

@@ -76,7 +76,7 @@ const SignUpPage: React.FC = () => {
         <Button className="contained" name="Sign Up" type="submit" />
       </form>
       <p className="yes-account">
-        Already have an account?{' '}
+        Already have an account?
         <Link to="/login">
           <span>Sign In</span>
         </Link>

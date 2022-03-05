@@ -13,9 +13,9 @@ const ReviewsList: React.FC<Props> = ({reviews}) => {
       {
         reviews.length === 0 ? <h4>There is not reviews for this recipe yet. Be the first 🙂 </h4> :
         reviews.map((r) => (
-        <div key={r.recipeId}>
+        <div key={r.recipeId} className='comment-rating'>
           <li>{r.comment}</li>
-          <li>{r.rating}</li>
+          <li>Rating: {r.rating}</li>
         </div>
         ))
       }

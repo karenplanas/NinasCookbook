@@ -21,7 +21,7 @@ const SearchPage: React.FC = () => {
       {recipes.length === 0 ? (
         <div className="no-recipes-found">
           <h4>
-            No recipes found for <span>" {name} "</span>
+            No recipes found for <span className='italic'>" {name} "</span>
           </h4>
           <img src={RecipeNotFound} alt="Recipe not found" />
         </div>
@@ -29,7 +29,7 @@ const SearchPage: React.FC = () => {
         <>
           {name ? (
             <h4>
-              Matching results for <span>" {name} "</span>
+              Matching results for <span className='italic'>" {name} "</span>
             </h4>
           ) : (
             <h4>Matching results</h4>

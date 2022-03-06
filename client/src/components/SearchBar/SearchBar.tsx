@@ -3,6 +3,7 @@ import './SearchBar.css';
 import lupe from '../../assets/lupe.svg';
 import { InputTextField } from '../InputTextField/InputTextField';
 import { Link, useNavigate } from 'react-router-dom';
+import { Skimmer } from '../icons/Skimmer';
 
 const SearchBar: React.FC = () => {
   const navigate = useNavigate();
@@ -25,7 +26,8 @@ const SearchBar: React.FC = () => {
       />
       <Link to={`/search?name=${searchValue}`}>
         <div className="lupe">
-          <img src={lupe} alt="magnifying glass" />
+          <Skimmer width={34} height={34} />
+          {/* <img src={lupe} alt="magnifying glass" /> */}
         </div>
       </Link>
     </form>

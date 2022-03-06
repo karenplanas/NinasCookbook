@@ -5,8 +5,8 @@ const { Schema, model } = mongoose;
 const reviewSchema = new Schema({
   rating: { type: Number, max: 5 },
   comment: String,
-  userId: String,
-  recipeId: String
+  userId: mongoose.Types.ObjectId,
+  recipeId: mongoose.Types.ObjectId
 });
 
 // A user can only give one review to a recipe
@@ -21,8 +21,35 @@ const addReview = async (review) => {
 };
 
 const getRecipeReviews = async (recipeId) => {
-  const reviews = Review.find({ recipeId });
+  const reviews = await Review.find({ recipeId });
   return reviews;
 };
 
-module.exports = { addReview, getRecipeReviews };
+// https://docs.mongodb.com/manual/reference/operator/aggregation/avg/
+// Group by recipe id and calculate the average rating
+const getAverageRating = () =>
+  Review.aggregate([
+    {
+      $group: {
+        _id: '$recipeId',
+        averageRating: { $avg: '$rating' }
+      }
+    }
+  ]);
+
+const getAverageRatingForRecipe = (recipeId) =>
+  Review.aggregate([
+    {
+      $match: {
+        recipeId: new mongoose.Types.ObjectId(recipeId)
+      }
+    },
+    {
+      $group: {
+        _id: '$recipeId',
+        averageRating: { $avg: '$rating' }
+      }
+    }
+  ]).then((result) => result[0]);
+
+module.exports = { addReview, getRecipeReviews, getAverageRating, getAverageRatingForRecipe };

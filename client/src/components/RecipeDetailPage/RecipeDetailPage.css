@@ -72,6 +72,7 @@
 h3.titles {
   margin-bottom: 0px;
   line-height: normal;
+  margin-top: 24px;
 }
 
 .titles-logo {
@@ -79,4 +80,28 @@ h3.titles {
   gap: 12px;
   align-items: baseline;
   margin-bottom: 16px;
+}
+
+.serving-container {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+
+.serving-container h3 {
+  margin-top: 0px;
+}
+
+.serving-container span {
+  font-size: 16pt;
+}
+
+p.created-details {
+  font-style: italic;
+}
+
+.title-details {
+  display: flex;
+  justify-content: space-between;
 }

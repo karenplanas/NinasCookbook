@@ -38,33 +38,11 @@ const Burguer: React.FC<Props> = ({ color, onClick, className }) => {
       <path
         d="M12 16.5L16.711 18.855C17.4807 19.2398 18.4102 19.0892 19.019 18.481L21 16.5"
         stroke="black"
-        fill="#FFCA28"
+        fill="#FFFF8D"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       {/* Top steak */}
-      {/* <path
-        d="M2.5 16.5C1.39543 16.5 0.5 15.6046 0.5 14.5C0.5 13.3954 1.39543 12.5 2.5 12.5"
-        stroke="black"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill='#B71C1C'
-      /> */}
-      {/* <path
-        d="16.5 0.5 "
-        stroke="black"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill='red'
-      /> */}
-
-      {/* <path
-        d="M21.5 12.5C22.6046 12.5 23.5 13.3954 23.5 14.5C23.5 15.6046 22.6046 16.5 21.5 16.5"
-        stroke="black"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill='#B71C1C'
-      /> */}
       <path 
         fillRule="evenodd" 
         clipRule="evenodd" 

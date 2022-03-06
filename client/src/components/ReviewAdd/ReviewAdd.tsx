@@ -10,12 +10,16 @@ import './ReviewAdd.css'
 
 const ReviewAdd : React.FC = () => {
 
-  const { register, handleSubmit } = useForm<ReviewInterface>({
+  const { register, handleSubmit, setValue } = useForm<ReviewInterface>({
     defaultValues: {
       rating: 0,
       comment: '',
     }
   });
+
+  const setRating = (value: number) => {
+    setValue('rating', value);
+  }
 
   const { recipeId } = useParams();
   const { createReview } = useRecipeApiClient();
@@ -29,7 +33,7 @@ const ReviewAdd : React.FC = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputTextArea rows={2} {...register('comment')} />
         <div className='rate-send-button'>
-          <StarRate />
+          <StarRate onChange={setRating}/>
           <Button className="contained" name="Send" />
         </div>
       </form>

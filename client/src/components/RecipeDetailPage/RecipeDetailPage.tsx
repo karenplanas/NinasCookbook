@@ -9,11 +9,15 @@ import { ReviewInterface } from '../../interfaces/ReviewInterface';
 import { ReviewsList } from '../ReviewsList/ReviewsList';
 import { SaltAndPepper } from '../icons/SaltAndPepper';
 import { Utensils } from '../icons/Utensils';
+import { Servings } from '../icons/Servings';
+import { useUserContext } from '../../contexts/UserContext';
+import { StarRate } from '../StarRate/StarRate';
 
 interface Props {}
 
 const RecipeDetailPage: React.FC<Props> = () => {
   const { recipeId } = useParams();
+  const { user } = useUserContext();
   const [recipe, setRecipe] = useState<Recipe>();
   const [reviews, setReviews] = useState<ReviewInterface[]>([]);
 
@@ -26,11 +30,23 @@ const RecipeDetailPage: React.FC<Props> = () => {
     fetchRecipeReviews(recipeId!).then((result) => setReviews(result));
   }, [recipeId, fetchRecipeReviews])
 
+
+  const userReviewed = reviews.find((review) => review.userId === user?._id);
+
   if (!recipe) return null;
   return (
     <LayoutNav>
       <div className="recipe-details-card">
-        <h2>{recipe.name}</h2>
+        <div className='title-details'>
+          <div>
+            <h2>{recipe.name}</h2>
+            <StarRate defaultValue={recipe.averageRating} disabled/>
+          </div>
+          <div>
+            <p className='created-details'>By: {recipe.creator?.firstName} {recipe.creator?.lastName}</p>
+            <p className='created-details'>Published on: {recipe.createdAt}</p>
+          </div>
+        </div>
 
         <div className="ingredients-image-container">
           <div className="image-container">
@@ -41,8 +57,8 @@ const RecipeDetailPage: React.FC<Props> = () => {
         <div className="recipe-detail-page-text-container">
           <div className="ingredients-container">
             <div className='titles-logo'>
-              <h3 className="titles">Ingredients</h3>
               <SaltAndPepper />
+              <h3 className="titles">Ingredients</h3>
             </div>
             <ul className="ingredients">
               {recipe.ingredients.map((i) => (
@@ -53,12 +69,16 @@ const RecipeDetailPage: React.FC<Props> = () => {
                 </li>
               ))}
             </ul>
+            <div className="serving-container ">
+              <Servings />
+              <h3 className="titles">Serving <span>{recipe.serving}</span></h3>
+            </div>
           </div>
 
           <div className="preparation-container">
             <div className='titles-logo '>
-              <h3 className="titles">Preparation</h3>
               <Utensils />
+              <h3 className="titles">Preparation</h3>
             </div>
             <ul className="steps">
               {recipe.steps.map((s) => (
@@ -70,13 +90,11 @@ const RecipeDetailPage: React.FC<Props> = () => {
             </ul>
           </div>
         </div>
-
-        <div className="serving-container">
-          <h3 className="titles">Serving:</h3>
-        </div>
       </div>
       <div className='reviews-area'>
-        <ReviewAdd />
+        {
+          (!userReviewed && <ReviewAdd />)
+        }
         <ReviewsList reviews={reviews}/>
       </div>
     </LayoutNav>

@@ -1,12 +1,11 @@
 import React from 'react'
 
 interface Props {
-  color?: string;
   onClick?: React.MouseEventHandler;
   className: string;
 }
 
-const Burguer: React.FC<Props> = ({ color, onClick, className }) => {
+const Burguer: React.FC<Props> = ({  onClick, className }) => {
   return (
     <svg
       width="34"
@@ -15,7 +14,14 @@ const Burguer: React.FC<Props> = ({ color, onClick, className }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       onClick={onClick}
+      className={className}
+      //style={cursor: pointer}
     >
+      {/* <style type='text/css'>
+        svg {
+         cursor: pointer;
+        }
+      </style> */}
       {/* Bottom */}
       <path
         d="M2.5 20.5V21.5C2.5 22.6046 3.39543 23.5 4.5 23.5H19.5C20.6046 23.5 21.5 22.6046 21.5 21.5V20.5"

@@ -5,11 +5,11 @@ import './StarRate.css'
 
 interface Props {
   onChange?: (value:number) => void
-  defaultValue?: number
+  value?: number
   disabled?: boolean
 }
 
-const StarRate : React.FC<Props> = ({ onChange, defaultValue, disabled }) => {
+const StarRate : React.FC<Props> = ({ onChange, value, disabled }) => {
   return (
       <Rate 
         allowHalf 
@@ -17,7 +17,7 @@ const StarRate : React.FC<Props> = ({ onChange, defaultValue, disabled }) => {
         style={{ fontSize: 28 }}
         character={<i className="anticon anticon-star" />}
         onChange={onChange}
-        defaultValue={defaultValue}
+        value={value}
       />
   )
 }

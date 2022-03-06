@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-// import { MenuIcon } from '../icons/MenuIcon';
 import './Menu.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUserContext } from '../../contexts/UserContext';
@@ -34,8 +33,7 @@ const Menu: React.FC = () => {
 
   return (
     <div className="menu-container">
-      {/* <MenuIcon onClick={onClick} color="black" className="menu-trigger" /> */}
-      <Burguer onClick={onClick} color="black" className="menu-trigger"/>
+      <Burguer onClick={onClick} className="menu-trigger"/>
       <nav
         onClick={onClick}
         ref={menuRef}
@@ -47,6 +45,9 @@ const Menu: React.FC = () => {
           </Link>
           <Link to="/user/recipes">
             <li>My Recipes</li>
+          </Link>
+          <Link to="/user/recipes">
+            <li>My Profile</li>
           </Link>
           <li 
             className="clickable"

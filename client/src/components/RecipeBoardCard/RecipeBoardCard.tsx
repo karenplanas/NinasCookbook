@@ -18,7 +18,7 @@ const RecipeBoardCard: React.FC<Props> = ({ recipe }) => {
       </div>
       <div className='name-rate-container'>
         <h4>{recipe.name}</h4>
-        <StarRate />
+        <StarRate value={recipe.averageRating} disabled/>
       </div>
     </div>
   );

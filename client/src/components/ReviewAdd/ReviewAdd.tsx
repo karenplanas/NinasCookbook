@@ -8,14 +8,19 @@ import { InputTextArea } from '../InputTextField/InputTextField'
 import { StarRate } from '../StarRate/StarRate'
 import './ReviewAdd.css'
 
-const ReviewAdd : React.FC = () => {
+interface Props {
+  onSuccess: () => void
+}
+const ReviewAdd : React.FC<Props> = ({onSuccess}) => {
 
-  const { register, handleSubmit, setValue } = useForm<ReviewInterface>({
+  const { register, handleSubmit, setValue, watch } = useForm<ReviewInterface>({
     defaultValues: {
       rating: 0,
       comment: '',
     }
   });
+
+  const rating = watch('rating')
 
   const setRating = (value: number) => {
     setValue('rating', value);
@@ -23,8 +28,9 @@ const ReviewAdd : React.FC = () => {
 
   const { recipeId } = useParams();
   const { createReview } = useRecipeApiClient();
-  const onSubmit = (data: ReviewInterface) => {
-    createReview({...data, recipeId: recipeId! });
+  const onSubmit = async (data: ReviewInterface) => {
+    await createReview({...data, recipeId: recipeId! });
+    onSuccess();
   }
 
   return (
@@ -33,7 +39,7 @@ const ReviewAdd : React.FC = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputTextArea rows={2} {...register('comment')} />
         <div className='rate-send-button'>
-          <StarRate onChange={setRating}/>
+          <StarRate value={rating} onChange={setRating}/>
           <Button className="contained" name="Send" />
         </div>
       </form>

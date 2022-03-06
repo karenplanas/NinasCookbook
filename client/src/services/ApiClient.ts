@@ -38,7 +38,7 @@ const performRequest = async <T>({
 
 // ***** Recipes requests *****
 
-const fetchRecipe = (id: string | undefined): Promise<Recipe> => {
+const fetchRecipe = (id: string): Promise<Recipe> => {
   return performRequest<Recipe>({
     method: 'GET',
     path: `${recipesPath}/${id}`

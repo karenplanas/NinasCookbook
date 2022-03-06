@@ -12,6 +12,7 @@ import { Utensils } from '../icons/Utensils';
 import { Servings } from '../icons/Servings';
 import { useUserContext } from '../../contexts/UserContext';
 import { StarRate } from '../StarRate/StarRate';
+import moment from 'moment';
 
 interface Props {}
 
@@ -20,31 +21,35 @@ const RecipeDetailPage: React.FC<Props> = () => {
   const { user } = useUserContext();
   const [recipe, setRecipe] = useState<Recipe>();
   const [reviews, setReviews] = useState<ReviewInterface[]>([]);
-
-  useEffect(() => {
-    fetchRecipe(recipeId).then((result) => setRecipe(result));
-  }, [recipeId]);
-  
-  const {fetchRecipeReviews} = useRecipeApiClient();
-  useEffect(()=>{
-    fetchRecipeReviews(recipeId!).then((result) => setReviews(result));
-  }, [recipeId, fetchRecipeReviews])
-
-
+  const { fetchRecipeReviews } = useRecipeApiClient();
   const userReviewed = reviews.find((review) => review.userId === user?._id);
 
+  const refresh = () => {
+    fetchRecipe(recipeId!).then((result) => setRecipe(result))
+    fetchRecipeReviews(recipeId!).then((result) => setReviews(result));
+  }
+  
+  useEffect(() => {
+    fetchRecipe(recipeId!).then((result) => setRecipe(result));
+  }, [recipeId]);
+  
+  useEffect(() => {
+    fetchRecipeReviews(recipeId!).then((result) => setReviews(result))
+  }, [recipeId, fetchRecipeReviews])
+
   if (!recipe) return null;
+
   return (
     <LayoutNav>
       <div className="recipe-details-card">
         <div className='title-details'>
           <div>
             <h2>{recipe.name}</h2>
-            <StarRate defaultValue={recipe.averageRating} disabled/>
+            <StarRate value={recipe.averageRating} disabled/>
           </div>
-          <div>
-            <p className='created-details'>By: {recipe.creator?.firstName} {recipe.creator?.lastName}</p>
-            <p className='created-details'>Published on: {recipe.createdAt}</p>
+          <div className='created-details'>
+            <p>By: {recipe.creator?.firstName} {recipe.creator?.lastName}</p>
+            <p>{moment(recipe.createdAt).format('MMMM Do, YYYY') }</p>
           </div>
         </div>
 
@@ -93,7 +98,7 @@ const RecipeDetailPage: React.FC<Props> = () => {
       </div>
       <div className='reviews-area'>
         {
-          (!userReviewed && <ReviewAdd />)
+          (!userReviewed && <ReviewAdd onSuccess={refresh}/>)
         }
         <ReviewsList reviews={reviews}/>
       </div>

@@ -1,17 +1,22 @@
 const mongoose = require('mongoose');
 
 const { Schema, model } = mongoose;
-const { getAverageRatingForRecipe } = require('./reviews');
+const { getAverageRatingForRecipe, getAverageRating } = require('./reviews');
 
-const recipeSchema = new Schema({
-  name: { type: String, required: true },
-  userId: { type: mongoose.Types.ObjectId, required: true },
-  description: { type: String },
-  pictures: [{ type: { type: String, url: String } }],
-  ingredients: [{ quantity: Number, name: String }],
-  steps: [{ name: String, content: String }],
-  serving: { type: String }
-});
+const recipeSchema = new Schema(
+  {
+    name: { type: String, required: true },
+    userId: { type: mongoose.Types.ObjectId, required: true },
+    description: { type: String },
+    pictures: [{ type: { type: String, url: String } }],
+    ingredients: [{ quantity: Number, name: String }],
+    steps: [{ name: String, content: String }],
+    serving: { type: String }
+  },
+  {
+    timestamps: true
+  }
+);
 
 recipeSchema.index({ name: 'text', 'ingredients.name': 'text' });
 
@@ -48,8 +53,8 @@ const deleteRecipe = async (recipeId) => {
 };
 
 // https://docs.mongodb.com/manual/reference/operator/aggregation/lookup/
-const getRecipes = () =>
-  Recipes.aggregate([
+const getRecipes = async () => {
+  const recipes = await Recipes.aggregate([
     {
       $lookup: {
         from: 'users',
@@ -57,8 +62,22 @@ const getRecipes = () =>
         foreignField: '_id',
         as: 'creator'
       }
+    },
+    {
+      $unwind: {
+        path: '$creator',
+        preserveNullAndEmptyArrays: true
+      }
     }
   ]);
+
+  const averages = await getAverageRating();
+
+  return recipes.map((recipe) => ({
+    ...recipe,
+    averageRating: averages.find((average) => recipe._id.equals(average._id))?.averageRating
+  }));
+};
 
 // https://docs.mongodb.com/manual/core/aggregation-pipeline/
 // https://docs.mongodb.com/manual/reference/operator/aggregation/match/
@@ -86,8 +105,7 @@ const getRecipe = async (id) => {
     }
   ]).then((result) => result[0]);
 
-  recipe.averageRating = (await getAverageRatingForRecipe(id)).averageRating;
-
+  recipe.averageRating = (await getAverageRatingForRecipe(id))?.averageRating;
   return recipe;
 };
 

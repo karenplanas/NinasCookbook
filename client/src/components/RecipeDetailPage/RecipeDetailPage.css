@@ -97,7 +97,12 @@ h3.titles {
   font-size: 16pt;
 }
 
-p.created-details {
+.created-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.created-details p{
   font-style: italic;
 }
 

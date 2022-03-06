@@ -10,6 +10,6 @@ export interface Recipe {
   serving: string;
   creator?: User;
   averageRating?: number
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

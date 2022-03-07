@@ -2,12 +2,17 @@ const mongoose = require('mongoose');
 
 const { Schema, model } = mongoose;
 
-const reviewSchema = new Schema({
-  rating: { type: Number, max: 5 },
-  comment: String,
-  userId: mongoose.Types.ObjectId,
-  recipeId: mongoose.Types.ObjectId
-});
+const reviewSchema = new Schema(
+  {
+    rating: { type: Number, max: 5 },
+    comment: String,
+    userId: mongoose.Types.ObjectId,
+    recipeId: mongoose.Types.ObjectId
+  },
+  {
+    timestamps: true
+  }
+);
 
 // A user can only give one review to a recipe
 // https://mongoosejs.com/docs/2.7.x/docs/indexes.html
@@ -20,11 +25,28 @@ const addReview = async (review) => {
   return newReview;
 };
 
-const getRecipeReviews = async (recipeId) => {
-  const reviews = await Review.find({ recipeId });
-  return reviews;
-};
-
+const getRecipeReviews = async (recipeId) =>
+  Review.aggregate([
+    {
+      $match: {
+        recipeId: mongoose.Types.ObjectId(recipeId)
+      }
+    },
+    {
+      $lookup: {
+        from: 'users',
+        localField: 'userId',
+        foreignField: '_id',
+        as: 'reviewer'
+      }
+    },
+    {
+      $unwind: {
+        path: '$reviewer',
+        preserveNullAndEmptyArrays: true
+      }
+    }
+  ]);
 // https://docs.mongodb.com/manual/reference/operator/aggregation/avg/
 // Group by recipe id and calculate the average rating
 const getAverageRating = () =>

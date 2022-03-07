@@ -1,6 +1,8 @@
 import React from 'react'
 import { ReviewInterface } from '../../interfaces/ReviewInterface'
+import { StarRate } from '../StarRate/StarRate'
 import './ReviewsList.css'
+import moment from 'moment'
 
 interface Props {
   reviews: ReviewInterface[]
@@ -12,10 +14,11 @@ const ReviewsList: React.FC<Props> = ({reviews}) => {
       <h3>Recipe Reviews</h3>
       {
         reviews.length === 0 ? <h4>There is not reviews for this recipe yet. Be the first 🙂 </h4> :
-        reviews.map((r) => (
-        <div key={r.recipeId} className='comment-rating'>
-          <li>{r.comment}</li>
-          <li>Rating: {r.rating}</li>
+        reviews.map((review) => (
+        <div key={review.recipeId} className='comment-rating-content'>
+          <StarRate value={review.rating} disabled size={20}/>
+          <p>{review.comment}</p>
+          <p className='ReviewsList-author-date'> {review.reviewer.firstName} {review.reviewer.lastName} • {moment(review.createdAt).format('MMM s YYYY')} </p>
         </div>
         ))
       }

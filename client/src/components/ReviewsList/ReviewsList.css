@@ -16,8 +16,23 @@
   margin-bottom: 16px;
 }
 
-.comment-rating {
+.comment-rating-content {
   display: flex;
+  justify-content: flex-start;
   flex-direction: column;
-  gap: 16px;
+  margin-bottom: 16px;
+  padding: 16px 16px 8px 16px;
+  border-bottom: 1px solid rgb(204, 201, 201);
+  gap: 8px
+}
+
+.comment-rating-content:last-child {
+  border-bottom: none;
+}
+
+p.ReviewsList-author-date {
+  font-size: 10pt;
+  font-style: italic;
+  color: rgb(94, 91, 91);
+  line-height: 16px;
 }

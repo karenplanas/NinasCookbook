@@ -7,14 +7,15 @@ interface Props {
   onChange?: (value:number) => void
   value?: number
   disabled?: boolean
+  size?: number
 }
 
-const StarRate : React.FC<Props> = ({ onChange, value, disabled }) => {
+const StarRate : React.FC<Props> = ({ onChange, value, disabled, size = 28 }) => {
   return (
       <Rate 
         allowHalf 
         disabled={ disabled }
-        style={{ fontSize: 28 }}
+        style={{ fontSize: size }}
         character={<i className="anticon anticon-star" />}
         onChange={onChange}
         value={value}

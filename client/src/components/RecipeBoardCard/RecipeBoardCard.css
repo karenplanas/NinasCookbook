@@ -50,3 +50,11 @@
   padding-top: 16px;
 }
 
+.name-rate-container p {
+  font-style: italic;
+}
+
+.creator-hat {
+  display: flex;
+  gap: 8px
+}

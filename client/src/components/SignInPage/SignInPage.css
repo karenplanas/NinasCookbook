@@ -7,9 +7,10 @@
 
 .no-account {
   text-align: center;
+  font-size: 14pt;
 }
 
 .no-account span {
-  text-decoration: none;
+  text-decoration: underline;
   font-weight: 600;
 }

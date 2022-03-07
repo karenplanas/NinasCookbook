@@ -1,5 +1,5 @@
 .menu {
-  background: #ffffff;
+  background: white;
   border-radius: 8px;
   position: absolute;
   right: 0;
@@ -38,7 +38,6 @@
 .menu ul > * {
   border: 0;
 }
-
 
 .clickable {
   cursor: pointer;

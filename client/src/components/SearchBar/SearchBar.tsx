@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './SearchBar.css';
-import lupe from '../../assets/lupe.svg';
 import { InputTextField } from '../InputTextField/InputTextField';
 import { Link, useNavigate } from 'react-router-dom';
 import { Skimmer } from '../icons/Skimmer';
@@ -11,7 +10,7 @@ const SearchBar: React.FC = () => {
 
   const submitHandler: React.FormEventHandler = (e) => {
     e.preventDefault();
-    navigate(`/search?name=${searchValue}`);
+    navigate(`/search?searchValue=${searchValue}`);
   };
 
   const onChange: any = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -24,10 +23,9 @@ const SearchBar: React.FC = () => {
         placeholder="Search recipe"
         onChange={onChange}
       />
-      <Link to={`/search?name=${searchValue}`}>
+      <Link to={`/search?searchValue=${searchValue}`}>
         <div className="lupe">
           <Skimmer width={34} height={34} />
-          {/* <img src={lupe} alt="magnifying glass" /> */}
         </div>
       </Link>
     </form>

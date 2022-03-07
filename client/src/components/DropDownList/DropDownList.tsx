@@ -19,7 +19,7 @@ const DropDownList: React.FC<Props> = ({ className, label, name, options }) => {
       <div className={clsx(className, 'DropDownList-wrapper')}>
         <select className="DropDownList">
           {options.map((o) => (
-            <option selected={o.selected} value={o.value}>
+            <option selected={o.selected} value={o.value} key={o.value}>
               {o.label}
             </option>
           ))}

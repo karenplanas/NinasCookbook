@@ -1,8 +1,11 @@
 :root {
-  --primary-color: #296f4a;
+  --primary-color-0: #E6FFEF;
   --primary-color-5: #39875d;
+  --primary-color: #296f4a;
   --primary-color-dark: #133f28;
-  --alert-color: rgb(172, 41, 41);
+  --alert-color: #AC2929;
+  --labels-text-color: #344054;
+  --borders-color: #D1CECE;
 }
 
 body {

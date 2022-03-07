@@ -13,7 +13,7 @@ const ReviewsList: React.FC<Props> = ({reviews}) => {
     <div className='ReviewsList'>
       <h3>Recipe Reviews</h3>
       {
-        reviews.length === 0 ? <h4>There is not reviews for this recipe yet. Be the first 🙂 </h4> :
+        reviews.length === 0 ? <h4>There is not reviews for this recipe yet. Be the first 🥇 </h4> :
         reviews.map((review) => (
         <div key={review.recipeId} className='comment-rating-content'>
           <StarRate value={review.rating} disabled size={20}/>

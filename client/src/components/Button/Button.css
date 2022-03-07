@@ -3,7 +3,7 @@ button {
   border-radius: 4px;
   padding: 8px 16px;
   font-size: 14pt;
-  font-weight: bold;
+  font-weight: 800;
   border-style: none;
   margin-top: 16px;
   margin-bottom: 16px;
@@ -25,4 +25,7 @@ button {
   border: solid;
   border-color: var(--primary-color);
   background-color: white;
+}
+.outlined:hover {
+  background-color: var(--primary-color-0);
 }

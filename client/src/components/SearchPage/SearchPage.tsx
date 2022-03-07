@@ -9,27 +9,27 @@ import RecipeNotFound from '../../assets/recipe-not-found.svg';
 
 const SearchPage: React.FC = () => {
   const [searchParams] = useSearchParams();
-  const name = searchParams.get('name');
+  const searchValue = searchParams.get('searchValue');
   const [recipes, setRecipes] = useState<Recipe[]>([]);
 
   useEffect(() => {
-    fetchRecipesByName(name).then((result) => setRecipes(result));
-  }, [name]);
+    fetchRecipesByName(searchValue).then((result) => setRecipes(result));
+  }, [searchValue]);
 
   return (
     <LayoutNav>
       {recipes.length === 0 ? (
         <div className="no-recipes-found">
           <h4>
-            No recipes found for <span className='italic'>" {name} "</span>
+            No recipes found for <span className='italic'>" {searchValue} "</span>
           </h4>
           <img src={RecipeNotFound} alt="Recipe not found" />
         </div>
       ) : (
         <>
-          {name ? (
+          {searchValue ? (
             <h4>
-              Matching results for <span className='italic'>" {name} "</span>
+              Matching results for <span className='italic'>" {searchValue} "</span>
             </h4>
           ) : (
             <h4>Matching results</h4>

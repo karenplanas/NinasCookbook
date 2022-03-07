@@ -56,7 +56,6 @@
 .ingredients {
   list-style-position: inside;
   list-style-type: circle;
-  /* list-style-image: url('sqpurple.gif'); */
 }
 
 .ingredients p {

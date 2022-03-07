@@ -12,4 +12,8 @@ export interface Recipe {
   averageRating?: number
   createdAt?: string;
   updatedAt?: string;
+  image: {
+    publicId: string;
+    url: string;
+  }
 }

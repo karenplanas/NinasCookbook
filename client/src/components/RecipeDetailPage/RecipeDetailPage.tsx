@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { AdvancedImage } from '@cloudinary/react';
+import moment from 'moment';
+import { useParams } from 'react-router-dom';
+
 import { Recipe } from '../../interfaces/Recipe';
 import './RecipeDetailPage.css';
-import { useParams } from 'react-router-dom';
 import { fetchRecipe, useRecipeApiClient } from '../../services/ApiClient';
 import { LayoutNav } from '../LayoutNav/LayoutNav';
 import { ReviewAdd } from '../ReviewAdd/ReviewAdd';
@@ -12,7 +15,7 @@ import { Utensils } from '../icons/Utensils';
 import { Servings } from '../icons/Servings';
 import { useUserContext } from '../../contexts/UserContext';
 import { StarRate } from '../StarRate/StarRate';
-import moment from 'moment';
+import { CloudinaryService, fill } from '../../services/CloudinaryService';
 
 interface Props {}
 
@@ -39,6 +42,9 @@ const RecipeDetailPage: React.FC<Props> = () => {
 
   if (!recipe) return null;
 
+  const recipeImage = CloudinaryService().image(recipe.image?.publicId);
+  recipeImage.resize(fill().width(1000).height(400))
+
   return (
     <LayoutNav>
       <div className="recipe-details-card">
@@ -55,7 +61,7 @@ const RecipeDetailPage: React.FC<Props> = () => {
 
         <div className="ingredients-image-container">
           <div className="image-container">
-            <img src={String(recipe.pictures[0]?.url)} alt="plate" />
+            <AdvancedImage cldImg={recipeImage} />
           </div>
         </div>
 

@@ -11,7 +11,13 @@ const recipeSchema = new Schema(
     pictures: [{ type: { type: String, url: String } }],
     ingredients: [{ quantity: Number, name: String }],
     steps: [{ name: String, content: String }],
-    serving: { type: String }
+    serving: { type: String },
+    image: {
+      type: {
+        url: String,
+        publicId: String
+      }
+    }
   },
   {
     timestamps: true

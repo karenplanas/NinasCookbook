@@ -12,7 +12,7 @@
   padding: 2px;
   border-style: none;
   border: solid 1px;
-  border-color: rgb(209, 206, 206);
+  border-color: var(--borders-color);
   border-radius: 4px;
   margin-left: 8px;
 }

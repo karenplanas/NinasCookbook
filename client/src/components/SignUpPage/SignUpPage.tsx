@@ -37,7 +37,7 @@ const SignUpPage: React.FC = () => {
 
   return (
     <LayoutFullScreen image={image}>
-      <h3>Sign Up</h3>
+        <h3>Sign Up</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputTextField
           type="text"
@@ -73,11 +73,11 @@ const SignUpPage: React.FC = () => {
           })}
         />
 
-        <Button className="contained" name="Sign Up" type="submit" />
+        <Button className="contained" text="Sign Up" type="submit" />
       </form>
-      <p className="yes-account">
-        Already have an account?
-        <Link to="/login">
+      <p className="yes-account"> 
+        Already have an account?{' '}
+        <Link to="/login"> 
           <span>Sign In</span>
         </Link>
       </p>

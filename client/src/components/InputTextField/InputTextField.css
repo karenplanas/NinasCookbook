@@ -1,7 +1,7 @@
 .InputTextField {
   display: flex;
   flex-direction: column;
-  color: #344054;
+  color: var(--labels-text-color);
   font-size: 10pt;
 }
 
@@ -15,8 +15,7 @@
 .InputTextField textarea {
   padding: 16px;
   border-style: none;
-  border: solid 2px;
-  border-color: rgb(209, 206, 206);
+  border: solid 2px var(--borders-color);
   border-radius: 8px;
   font-size: 12pt;
 }

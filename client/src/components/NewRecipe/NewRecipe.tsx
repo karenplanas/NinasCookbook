@@ -1,41 +1,47 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useForm, useFieldArray, FormProvider } from 'react-hook-form';
+import { AdvancedImage } from '@cloudinary/react';
 
 import './NewRecipe.css';
 import { Button } from '../Button/Button';
 import { IngredientRow } from './IngredientRow/IngredientRow';
-import {
-  InputTextArea,
-  InputTextField
-} from '../InputTextField/InputTextField';
+import { InputTextArea, InputTextField } from '../InputTextField/InputTextField';
 import { LayoutNav } from '../LayoutNav/LayoutNav';
 import { Recipe } from '../../interfaces/Recipe';
 import { useRecipeApiClient } from '../../services/ApiClient';
 import { useNavigate } from 'react-router-dom';
 import { useNavigateIfNotAuthenticated } from '../../contexts/UserContext';
+import { CloudinaryUploadWidget } from '../CloudinaryUploadWidget/CloudinaryUploadWidget';
+import { CloudinaryResult } from '../../interfaces/CloudinaryResult';
+import { CloudinaryService, fill } from '../../services/CloudinaryService';
 
 const NewRecipe: React.FC = () => {
   useNavigateIfNotAuthenticated();
 
   const methods = useForm<Recipe>({
     defaultValues: {
-      name: 'Croissansito',
-      description: 'Un croissansito rico',
+      name: '',
+      description: '',
       ingredients: [
         {
-          name: 'Eggs',
-          quantity: 2
+          name: '',
+          quantity: 1
         }
       ],
       steps: [
         {
           name: 'Step 1',
-          content: 'Some things to do'
+          content: ''
         }
-      ]
+      ],
+      image: {
+        url: '',
+        publicId: '',
+      }
     }
   });
-  const { control, handleSubmit, register } = methods;
+
+  const { control, handleSubmit, register, setValue, watch } = methods;
 
   //React Hook Form - useFieldArray - https://react-hook-form.com/api/usefieldarray/
   //CodeSandbox https://codesandbox.io/s/vy8fv
@@ -50,17 +56,29 @@ const NewRecipe: React.FC = () => {
   });
 
   const navigate = useNavigate();
+
   const { createRecipe } = useRecipeApiClient();
-  const onSubmit = handleSubmit((data) => {
-    createRecipe(data);
+
+  const onSubmit = handleSubmit(async (data) => {
+    await createRecipe(data);
     navigate('/user/recipes');
   });
+
+  const onSuccess = useCallback((result: CloudinaryResult['info']) => {
+    setValue('image', {
+      url: result.url,
+      publicId: result.public_id,
+    })
+  }, [setValue])
+
+  const recipeImage = CloudinaryService().image(watch('image')?.publicId);
+  recipeImage.resize(fill().width(250).height(130))
 
   return (
     <LayoutNav>
       <div className="new-recipe-card">
         <h3>Create new recipe</h3>
-
+        
         {/* Everything under FormProvider can use/access React hook forms methods/functions through useFormContext */}
         {/* https://react-hook-form.com/api/useformcontext */}
         <FormProvider {...methods}>
@@ -83,6 +101,10 @@ const NewRecipe: React.FC = () => {
                   label="Description / Notes"
                   {...register('description')}
                 />
+                <div className='NewRecipe-image-upload'>
+                  <AdvancedImage cldImg={recipeImage} />
+                  <p>Picture</p><CloudinaryUploadWidget onSuccess={onSuccess} />
+                </div>
               </div>
             </div>
 
@@ -129,7 +151,7 @@ const NewRecipe: React.FC = () => {
                 </div>
                 <div className="steps-management">
                   <div>
-                    <p className="add-more" onClick={() => appendStep({})}>
+                    <p className="add-more" onClick={() => appendStep({name:`Step ${stepFields.length +1}`})}>
                       Add step
                     </p>
                   </div>
@@ -143,8 +165,8 @@ const NewRecipe: React.FC = () => {
             </div>
 
             <div className="buttons">
-              <Button className="outlined" name="Cancel" />
-              <Button className="contained" name="Save" />
+              <Button className="outlined" text="Cancel" />
+              <Button className="contained" text="Save" />
             </div>
           </form>
         </FormProvider>

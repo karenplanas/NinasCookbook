@@ -1,8 +1,8 @@
 .DropDownList-wrapper {
   padding-right: 16px;
-  border: solid 2px rgb(209, 206, 206);
+  border: solid 2px var(--borders-color);
   border-radius: 8px;
-  color: #344054;
+  color: var(--labels-text-color);
   overflow: hidden;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .DropDownList-withLabel label {
-  color: #344054;
+  color: var(--labels-text-color);
   margin-bottom: 8px;
   font-weight: 500;
   font-size: 12pt;

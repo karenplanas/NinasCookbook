@@ -7,21 +7,24 @@
   padding: 16px;
 }
 
-.UserRecipeCard-image-container {
-  background-color: aqua;
-  width: 200px;
+.UserRecipeCard-image-container img{
+  border-radius: 8px;
 }
 
 .user-recipe-details {
   width: 100%;
   padding-left: 24px;
+  display: flex;
+  flex-direction: column;
 }
 
 .userRecipeCard-options {
   display: flex;
-  gap: 16px;
   justify-content: flex-end;
-}
+  gap: 16px;
+  flex: 1;
+  align-items: flex-end;
+ }
 
 .userRecipeCard-options p {
   font-size: 12pt;

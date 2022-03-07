@@ -55,7 +55,9 @@ const IngredientRow: React.FC<Props> = ({ showLabel, name, onDeleteClick }) => {
         options={options}
         className="unit-dropdown-list"
       />
-      <DeleteIcon color="red" className="delete" onClick={onDeleteClick} />
+      <div className="delete">
+        <DeleteIcon onClick={onDeleteClick} />
+      </div>
     </div>
   );
 };

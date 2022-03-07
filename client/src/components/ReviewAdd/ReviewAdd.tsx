@@ -40,7 +40,7 @@ const ReviewAdd : React.FC<Props> = ({onSuccess}) => {
         <InputTextArea rows={2} {...register('comment')} />
         <div className='rate-send-button'>
           <StarRate value={rating} onChange={setRating}/>
-          <Button className="contained" name="Send" />
+          <Button className="contained" text="Send" />
         </div>
       </form>
     </div>

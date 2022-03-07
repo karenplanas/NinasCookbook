@@ -1,22 +1,25 @@
 import React from 'react';
+import moment from 'moment'
 
 import { Recipe } from '../../interfaces/Recipe';
 import { StarRate } from '../StarRate/StarRate';
 import './RecipeBoardCard.css';
-import moment from 'moment'
 import { ChefHat } from '../icons/ChefHat';
+import { CloudinaryService, fill } from '../../services/CloudinaryService';
+import { AdvancedImage } from '@cloudinary/react';
 
 interface Props  {
   recipe: Recipe;
 }
 
 const RecipeBoardCard: React.FC<Props> = ({ recipe }) => {
-  const picture = recipe.pictures.find((pic) => pic.type === 'medium') || recipe.pictures[0];
-   
-  return (
+  const recipeImage = CloudinaryService().image(recipe.image?.publicId);
+  recipeImage.resize(fill().width(600).height(600))
+  
+    return (
     <div className="recipe-board-card">
       <div className="image-container">
-        <img src={picture?.url} alt="plate" />
+        <AdvancedImage cldImg={recipeImage} />
       </div>
       <div className='name-rate-container'>
         <h4>{recipe.name}</h4>
@@ -31,4 +34,4 @@ const RecipeBoardCard: React.FC<Props> = ({ recipe }) => {
   );
 };
 
-export { RecipeBoardCard };
+export { RecipeBoardCard }

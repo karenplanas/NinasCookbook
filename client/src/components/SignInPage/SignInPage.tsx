@@ -49,10 +49,10 @@ const SignInPage: React.FC = () => {
           <InputCheckBox name="remember-me" label="Remember me" />
           <p>Forgot password ?</p>
         </div>
-        <Button className="contained" name="Sign In" type="submit" />
+        <Button className="contained" text="Sign In" type="submit" />
       </form>
       <p className="no-account">
-        Don't have an account yet?
+        Don't have an account yet?{' '}
         <Link to="/sign-up">
           <span>Sign Up</span>
         </Link>

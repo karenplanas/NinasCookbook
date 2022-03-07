@@ -10,7 +10,7 @@ const Menu: React.FC = () => {
   const menuRef = useRef<HTMLElement>(null);
   const [isActive, setIsActive] = useState(false);
   const onClick = () => setIsActive(!isActive);
-  const { logout } = useUserContext();
+  const { logout, user } = useUserContext();
 
   useEffect(() => {
     const pageClickEvent = (e: MouseEvent) => {
@@ -49,15 +49,18 @@ const Menu: React.FC = () => {
           <Link to="/user/recipes">
             <li>My Profile</li>
           </Link>
-          <li 
-            className="clickable"
-            onClick={() => {
-              logout();
-              navigate('/');
-            }}
-          >
-            Logout
-          </li>
+          {
+            user && 
+              <li 
+                className="clickable" 
+                onClick={() => {
+                  logout();
+                  navigate('/');
+                }}
+              >
+                Logout
+              </li>
+          }
         </ul>
       </nav>
     </div>

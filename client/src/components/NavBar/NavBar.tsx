@@ -12,7 +12,7 @@ const NavBar: React.FC = () => {
   return (
     <div className="nav-bar">
       <Link to="/">
-        <div className='title-logo'>
+        <div className='NavBar-title-logo'>
           <Logo />
           <h1>Nina's Cookbook</h1>
         </div>

@@ -7,9 +7,9 @@
   margin-bottom: 24px;
 }
 
-.new-recipe-card h3 {
+/* .new-recipe-card h3 {
   margin-bottom: 40px;
-}
+} */
 
 .info-section {
   display: flex;
@@ -94,7 +94,13 @@
 .NewRecipe-titles-logo {
   display: flex;
   gap: 12px;
-  align-items: baseline;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+
+.NewRecipe-titles-logo h3{
+  margin-bottom: 0;
+  align-self: flex-end;
 }
 
 .left-column {

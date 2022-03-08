@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Recipe } from '../../interfaces/Recipe';
 import { CloudinaryService, fill } from '../../services/CloudinaryService';
 import './CurrentUserRecipeCard.css';
+import { StarRate } from '../StarRate/StarRate';
 
 interface Props {
   recipe: Recipe;
@@ -26,6 +27,7 @@ const CurrentUserRecipeCard: React.FC<Props> = ({ recipe, handleDelete }) => {
         <Link to={`/recipes/${recipe._id}`}>
           <h4>{recipe.name}</h4>
         </Link>
+        <StarRate value={recipe.averageRating} disabled/>
         <p>{recipe.description}</p>
         <div className="userRecipeCard-options">
           <Link to={`/recipes/${recipe._id}`}>

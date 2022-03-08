@@ -5,6 +5,7 @@ import { useRecipeApiClient } from '../../services/ApiClient';
 import { LayoutNav } from '../LayoutNav/LayoutNav';
 import { CurrentUserRecipeCard } from '../CurrentUserRecipeCard/CurrentUserRecipeCard';
 import './CurrentUserRecipes.css';
+import { ChefHat } from '../icons/ChefHat';
 
 const CurrentUserRecipes: React.FC = () => {
   useNavigateIfNotAuthenticated();
@@ -28,7 +29,10 @@ const CurrentUserRecipes: React.FC = () => {
   return (
     <LayoutNav>
       <div className="CurrentUserRecipes">
-        <h3>My Recipes</h3>
+        <div className='CurrentUserRecipes-titles-logo'>
+          <h3>My Recipes</h3>
+          <ChefHat />
+        </div>
         {userRecipes?.map((r) => (
           <CurrentUserRecipeCard
             recipe={r}

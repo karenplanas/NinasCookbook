@@ -28,25 +28,18 @@ recipeSchema.index({ name: 'text', 'ingredients.name': 'text' });
 
 const Recipes = model('recipes', recipeSchema, 'recipes');
 
-// https://docs.mongodb.com/manual/core/link-text-indexes/
-const getRecipesByName = (searchValue) =>
-  Recipes.find(
-    {
-      $text: {
-        $search: searchValue
-      }
-    },
-    { score: { $meta: 'textScore' } }
-  ).sort({ score: { $meta: 'textScore' } });
+const injectAverageRating = async (recipes) => {
+  const averages = await getAverageRating();
+  return recipes.map((recipe) => ({
+    ...recipe,
+    averageRating: averages.find((average) => recipe._id.equals(average._id))?.averageRating
+  }));
+};
 
+// https://docs.mongodb.com/manual/core/link-text-indexes/
 const addRecipe = async (recipe) => {
   const r = new Recipes(recipe);
   return r.save();
-};
-
-const getUserRecipes = (userId) => {
-  const userRecipes = Recipes.find({ userId });
-  return userRecipes;
 };
 
 const deleteRecipe = async (recipeId) => {
@@ -54,36 +47,58 @@ const deleteRecipe = async (recipeId) => {
   return res;
 };
 
+const getUserRecipes = async (userId) => {
+  const userRecipes = await Recipes.find({ userId }).then((r) => r.map((recipe) => recipe._doc));
+  return injectAverageRating(userRecipes);
+};
+
+const lookUpUser = {
+  $lookup: {
+    // this.localField === from.foreignField => recipe.userId === users._id
+    from: 'users',
+    localField: 'userId',
+    foreignField: '_id',
+    as: 'creator'
+  }
+};
+
+const unwindUser = {
+  $unwind: {
+    path: '$creator',
+    preserveNullAndEmptyArrays: true
+  }
+};
+
+const joinCreator = [lookUpUser, unwindUser];
+
+// https://docs.mongodb.com/manual/tutorial/text-search-in-aggregation/
+const getRecipesByName = async (searchValue) => {
+  const recipes = await Recipes.aggregate([
+    {
+      $match: {
+        $text: {
+          $search: searchValue
+        }
+      }
+    },
+    { $sort: { score: { $meta: 'textScore' } } },
+    ...joinCreator
+  ]);
+
+  return injectAverageRating(recipes);
+};
+
 // https://docs.mongodb.com/manual/reference/operator/aggregation/lookup/
 const getRecipes = async () => {
   const recipes = await Recipes.aggregate([
-    {
-      $lookup: {
-        from: 'users',
-        localField: 'userId',
-        foreignField: '_id',
-        as: 'creator'
-      }
-    },
-    {
-      $unwind: {
-        path: '$creator',
-        preserveNullAndEmptyArrays: true
-      }
-    },
+    ...joinCreator,
     {
       $sort: {
         createdAt: -1
       }
     }
   ]);
-
-  const averages = await getAverageRating();
-
-  return recipes.map((recipe) => ({
-    ...recipe,
-    averageRating: averages.find((average) => recipe._id.equals(average._id))?.averageRating
-  }));
+  return injectAverageRating(recipes);
 };
 
 // https://docs.mongodb.com/manual/core/aggregation-pipeline/
@@ -95,21 +110,7 @@ const getRecipe = async (id) => {
         _id: new mongoose.Types.ObjectId(id)
       }
     },
-    {
-      $lookup: {
-        // this.localField === from.foreignField => recipe.userId === users._id
-        from: 'users',
-        localField: 'userId',
-        foreignField: '_id',
-        as: 'creator'
-      }
-    },
-    {
-      $unwind: {
-        path: '$creator',
-        preserveNullAndEmptyArrays: true
-      }
-    }
+    ...joinCreator
   ]).then((result) => result[0]);
 
   recipe.averageRating = (await getAverageRatingForRecipe(id))?.averageRating;

@@ -7,6 +7,7 @@ import './RecipeBoardCard.css';
 import { ChefHat } from '../icons/ChefHat';
 import { CloudinaryService, fill } from '../../services/CloudinaryService';
 import { AdvancedImage } from '@cloudinary/react';
+import { Link } from 'react-router-dom';
 
 interface Props  {
   recipe: Recipe;
@@ -19,10 +20,14 @@ const RecipeBoardCard: React.FC<Props> = ({ recipe }) => {
     return (
     <div className="recipe-board-card">
       <div className="image-container">
-        <AdvancedImage cldImg={recipeImage} />
+        <Link to={`/recipes/${recipe._id}`}>
+          <AdvancedImage cldImg={recipeImage} />
+        </Link>
       </div>
       <div className='name-rate-container'>
-        <h4>{recipe.name}</h4>
+        <Link to={`/recipes/${recipe._id}`}>
+          <h4>{recipe.name}</h4>
+        </Link>
         <div className='creator-hat'>
           <p>By {recipe.creator?.firstName} {recipe.creator?.lastName}</p>
           <ChefHat />

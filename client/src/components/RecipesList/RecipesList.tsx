@@ -17,9 +17,7 @@ const RecipesList: React.FC<Props> = ({ listTitle, recipesList }) => {
       <ul className="list">
         {recipes.map((r) => (
           <li key={r._id}>
-            <Link to={`/recipes/${r._id}`}>
-              <RecipeBoardCard recipe={r} />
-            </Link>
+            <RecipeBoardCard recipe={r} />
           </li>
         ))}
       </ul>

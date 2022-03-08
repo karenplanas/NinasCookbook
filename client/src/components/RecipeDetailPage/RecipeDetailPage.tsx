@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AdvancedImage } from '@cloudinary/react';
 import moment from 'moment';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { Recipe } from '../../interfaces/Recipe';
 import './RecipeDetailPage.css';
@@ -104,6 +104,11 @@ const RecipeDetailPage: React.FC<Props> = () => {
       </div>
       <div className='reviews-area'>
         {
+          !user ? 
+            <div className='Sing-in-for-review'>
+              <h4>To review this recipe please <Link to='/login'><span>Sign In</span></Link></h4> 
+            </div>
+          :
           (!userReviewed && <ReviewAdd onSuccess={refresh}/>)
         }
         <ReviewsList reviews={reviews}/>

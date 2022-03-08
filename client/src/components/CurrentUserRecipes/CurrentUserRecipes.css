@@ -7,3 +7,9 @@
 .CurrentUserRecipes h3 {
   margin-bottom: 16px;
 }
+
+.CurrentUserRecipes-titles-logo {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}

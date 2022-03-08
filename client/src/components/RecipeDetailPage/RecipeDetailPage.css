@@ -109,3 +109,8 @@ h3.titles {
   display: flex;
   justify-content: space-between;
 }
+
+.Sing-in-for-review span {
+  text-decoration: underline;
+  font-weight: 600;
+}

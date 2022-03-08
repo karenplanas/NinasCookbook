@@ -29,3 +29,9 @@ button {
 .outlined:hover {
   background-color: var(--primary-color-0);
 }
+
+.with-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

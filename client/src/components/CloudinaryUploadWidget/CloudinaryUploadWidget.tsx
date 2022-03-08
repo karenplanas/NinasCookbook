@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { CloudinaryResult } from '../../interfaces/CloudinaryResult';
 import { Button } from '../Button/Button';
+import { Camera } from '../icons/Camera';
 
 interface Props {
   onSuccess: (result: CloudinaryResult['info'])=>void
@@ -31,8 +32,7 @@ const CloudinaryUploadWidget : React.FC<Props> = ({ onSuccess }) => {
   }, [onSuccess])
 
   return (
-    // <button id="upload_widget" className="cloudinary-button">Upload</button>
-    <Button type="button" id='upload_widget' text='Upload' className='outlined'/>
+    <Button type="button" id='upload_widget' text='Upload' className='outlined' icon={<Camera />}/>
   )
 }
 

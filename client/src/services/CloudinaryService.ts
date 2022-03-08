@@ -11,6 +11,4 @@ const CloudinaryService = () => {
   return cld;
 }
 
-
-
 export { CloudinaryService }

@@ -21,9 +21,10 @@
 .info-section h4 {
   font-size: 14pt;
   font-weight: 500;
+}
+
+.info-section .left-column {
   width: 200px;
-  text-align: end;
-  margin-right: 24px;
 }
 
 .inputs-section {
@@ -88,4 +89,17 @@
   font-weight: 500;
   font-size: 12pt;
   color: var(--labels-text-color);
+}
+
+.NewRecipe-titles-logo {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }

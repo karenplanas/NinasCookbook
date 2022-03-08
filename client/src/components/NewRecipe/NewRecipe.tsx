@@ -14,6 +14,11 @@ import { useNavigateIfNotAuthenticated } from '../../contexts/UserContext';
 import { CloudinaryUploadWidget } from '../CloudinaryUploadWidget/CloudinaryUploadWidget';
 import { CloudinaryResult } from '../../interfaces/CloudinaryResult';
 import { CloudinaryService, fill } from '../../services/CloudinaryService';
+import { BolMushrooms } from '../icons/BolMushrooms';
+import { CutBoard } from '../icons/CutBoard';
+import { Broccoli } from '../icons/Broccoli';
+import { LadleSmoking } from '../icons/LadleSmoking';
+import { Ladle } from '../icons/Ladle';
 
 const NewRecipe: React.FC = () => {
   useNavigateIfNotAuthenticated();
@@ -77,14 +82,21 @@ const NewRecipe: React.FC = () => {
   return (
     <LayoutNav>
       <div className="new-recipe-card">
-        <h3>Create new recipe</h3>
+        <div className='NewRecipe-titles-logo'>
+          <h3>Create new recipe</h3>
+          <BolMushrooms />
+        </div>
         
         {/* Everything under FormProvider can use/access React hook forms methods/functions through useFormContext */}
         {/* https://react-hook-form.com/api/useformcontext */}
         <FormProvider {...methods}>
           <form onSubmit={onSubmit}>
             <div className="info-section">
-              <h4>Informations</h4>
+              <div className='left-column'>
+                <h4>Informations</h4>
+                <LadleSmoking />
+                {/* <Ladle /> */}
+              </div>
               <div className="inputs-section informations">
                 <InputTextField
                   type="text"
@@ -103,13 +115,16 @@ const NewRecipe: React.FC = () => {
                 />
                 <div className='NewRecipe-image-upload'>
                   <AdvancedImage cldImg={recipeImage} />
-                  <p>Picture</p><CloudinaryUploadWidget onSuccess={onSuccess} />
+                  <CloudinaryUploadWidget onSuccess={onSuccess} />
                 </div>
               </div>
             </div>
 
             <div className="info-section">
-              <h4>Ingredients</h4>
+              <div className='left-column'>
+                <h4>Ingredients</h4>
+                <Broccoli />
+              </div>
               <div className="inputs-section ingredients">
                 <div className="ingredients-inputs">
                   {ingredientFields.map((item, index) => (
@@ -130,7 +145,10 @@ const NewRecipe: React.FC = () => {
             </div>
 
             <div className="info-section">
-              <h4>Preparation</h4>
+              <div className='left-column'>
+                <h4>Preparation</h4>
+                <CutBoard />
+              </div>
               <div className="inputs-section preparation">
                 <div className="steps-input">
                   {stepFields.map((item, index) => (

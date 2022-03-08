@@ -28,10 +28,6 @@ recipeSchema.index({ name: 'text', 'ingredients.name': 'text' });
 
 const Recipes = model('recipes', recipeSchema, 'recipes');
 
-// const getRecipes = () => Recipes.find();
-
-// const getRecipe = (id) => Recipes.findOne({ _id: id });
-
 // https://docs.mongodb.com/manual/core/link-text-indexes/
 const getRecipesByName = (searchValue) =>
   Recipes.find(
@@ -73,6 +69,11 @@ const getRecipes = async () => {
       $unwind: {
         path: '$creator',
         preserveNullAndEmptyArrays: true
+      }
+    },
+    {
+      $sort: {
+        createdAt: -1
       }
     }
   ]);

@@ -11,21 +11,29 @@ const SearchPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const searchValue = searchParams.get('searchValue');
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchRecipesByName(searchValue).then((result) => setRecipes(result));
+    fetchRecipesByName(searchValue).then((result) => {
+      setRecipes(result);
+      setIsLoading(false);
+    });
   }, [searchValue]);
+
+
+  {/* TODO : No recipes found should only shows when loading === false */}
 
   return (
     <LayoutNav>
-      {recipes.length === 0 ? (
-        <div className="no-recipes-found">
-          <h4>
-            No recipes found for <span className='italic'>" {searchValue} "</span>
-          </h4>
-          <img src={RecipeNotFound} alt="Recipe not found" />
-        </div>
-      ) : (
+      {
+        !isLoading && recipes.length === 0 ? (
+          <div className="no-recipes-found">
+            <h4>
+              No recipes found for <span className='italic'>" {searchValue} "</span>
+            </h4>
+            <img src={RecipeNotFound} alt="Recipe not found" />
+          </div>
+        ) : (
         <>
           {searchValue ? (
             <h4>

@@ -18,7 +18,7 @@ const ReviewsList: React.FC<Props> = ({reviews}) => {
         <div key={review.recipeId} className='comment-rating-content'>
           <StarRate value={review.rating} disabled size={20}/>
           <p>{review.comment}</p>
-          <p className='ReviewsList-author-date'> {review.reviewer.firstName} {review.reviewer.lastName} • {moment(review.createdAt).format('MMM s YYYY')} </p>
+          <p className='ReviewsList-author-date'> {review.reviewer.firstName} {review.reviewer.lastName} • {moment(review.createdAt).format('MMM Do, YYYY')} </p>
         </div>
         ))
       }

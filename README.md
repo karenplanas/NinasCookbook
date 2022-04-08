@@ -62,4 +62,4 @@ npm start
 * [Cloudinary](https://cloudinary.com/)  
 * [Koa](https://koajs.com/)  
 * [MongoDB](https://www.mongodb.com/)  
-* [Mongoose](https://mongoosejs.com/)  
+* [Mongoose](https://mongoosejs.com/)   

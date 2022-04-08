@@ -24,12 +24,14 @@ Is a web application that allows you to list, search, create, review, and rate c
 npm install
 ```
 
-3. Create .env file in server folder
+3. DB requirements: You need to have a MongoDB server running, either [locally](https://www.mongodb.com/docs/guides/server/install/), or on the [cloud](https://www.mongodb.com/cloud/atlas), to connect to.
+
+4. Create .env file in the server folder and set the [Mongodb URI](https://www.mongodb.com/docs/manual/reference/connection-string/) and a [Secret Key](https://randomkeygen.com/) of your choice. 
 ```
 MONGO_URI=
 SECRET_KEY=
 ```
-
+<!-- 
 4. Install [MongoDB](https://www.mongodb.com/docs/manual/installation/) on your machine
 
 5. Run `mongosh` without any command-line options to connect to a MongoDB instance running on your localhost with default port 27017. 
@@ -38,14 +40,14 @@ More info [here](https://www.mongodb.com/docs/mongodb-shell/connect/#std-label-m
 6. To select a database to use, in `mongosh`, issue the `use <db>` statement. If a database does not exist, MongoDB creates the database when you first store data for that database.
 ```
 use myDB
-```
+``` -->
 
-7. Start the server. From the server folder, run
+5. Start the server. From the server folder, run
 ```
 npm start
 ```
   
-8. Start the client. From the client folder, run
+6. Start the client. From the client folder, run
 ```
 npm start
 ```

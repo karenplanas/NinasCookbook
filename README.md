@@ -53,13 +53,13 @@ npm start
 ```
 
 # Tech Stack 
-[Figma](https://www.figma.com/)  
-[Notion](https://www.notion.so/)  
-[React](https://reactjs.org/)  
-[React Hook Form](https://react-hook-form.com/)  
-[TypeScript](https://www.typescriptlang.org/)  
-[JWT](https://jwt.io/)  
-[Cloudinary](https://cloudinary.com/)  
-[Koa](https://koajs.com/)  
-[MongoDB](https://www.mongodb.com/)  
-[Mongoose](https://mongoosejs.com/)  
+* [Figma](https://www.figma.com/)  
+* [Notion](https://www.notion.so/)  
+* [React](https://reactjs.org/)  
+* [React Hook Form](https://react-hook-form.com/)  
+* [TypeScript](https://www.typescriptlang.org/)  
+* [JWT](https://jwt.io/)  
+* [Cloudinary](https://cloudinary.com/)  
+* [Koa](https://koajs.com/)  
+* [MongoDB](https://www.mongodb.com/)  
+* [Mongoose](https://mongoosejs.com/)  
